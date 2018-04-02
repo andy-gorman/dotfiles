@@ -10,7 +10,7 @@ case $- in
 esac
 
 # Load 
-for file in ~/.{bash_prompt,aliases,functions}; do
+for file in ~/.{bash_prompt,aliases,functions,exports}; do
     if [[ -r "$file" ]] && [[ -f "$file" ]]; then
         source "$file"
     fi
@@ -52,3 +52,11 @@ unset option
 
 # Make less more friendly for non-text input files, see lesspipe(1)
 [[ -x /usr/bin/lesspipe ]] && export LESSOPEN="|lesspipe %s"
+
+set -o vi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/gormanate/Development/google-cloud-sdk/path.bash.inc' ]; then source '/Users/gormanate/Development/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/gormanate/Development/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/gormanate/Development/google-cloud-sdk/completion.bash.inc'; fi

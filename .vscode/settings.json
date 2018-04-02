@@ -1,0 +1,15 @@
+/*
+ * Filename: /Users/gormanate/Projects/Dotfiles/.vscode/settings.json
+ * Path: /Users/gormanate/Projects/Dotfiles/.vscode
+ * Created Date: Saturday, March 17th 2018, 4:35:21 pm
+ * Author: Andy Gorman
+ * 
+ * Copyright (c) 2018 Your Company
+ */
+
+{
+    "python.pythonPath": "/usr/local/bin/python3",
+    "python.linting.pylintEnabled": false,
+    "python.linting.pep8Enabled": true,
+    "python.linting.enabled": true
+}
