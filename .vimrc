@@ -37,5 +37,10 @@ set lazyredraw			" Wait to redraw
 set nocursorcolumn
 set nocursorline
 
+" Tab settings
+set tabstop=4
+set expandtab
+set shiftwidth=4
+set softtabstop=4
 imap jk <ESC>
 syntax enable
