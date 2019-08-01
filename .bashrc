@@ -10,7 +10,7 @@ case $- in
 esac
 
 # Load 
-for file in ~/.{bash_prompt,aliases,functions,exports}; do
+for file in ~/.{bash_prompt,aliases,auto-completions,functions,exports}; do
     if [[ -r "$file" ]] && [[ -f "$file" ]]; then
         source "$file"
     fi
