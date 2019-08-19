@@ -27,4 +27,4 @@ export PATH
 
 
 # Stuff for go
-export GOPATH=$HOME/Development/go
+export GOPATH=/usr/local/go/bin

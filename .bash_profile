@@ -16,3 +16,5 @@ if [ -f '/Users/agorman/lib/google-cloud-sdk/path.bash.inc' ]; then . '/Users/ag
 if [ -f '/Users/agorman/lib/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/agorman/lib/google-cloud-sdk/completion.bash.inc'; fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+export PATH="$HOME/.cargo/bin:$PATH"
