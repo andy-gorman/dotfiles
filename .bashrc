@@ -58,7 +58,3 @@ set -o emacs
 
 # Add postgres binaries to the path
 export PATH="$PATH:/Library/PostgreSQL/11/bin/"
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
