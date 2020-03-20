@@ -3,7 +3,6 @@
 # My .bashrc file. 
 
 # Don't do anything if we are not running interactively
-
 case $- in
     *i*) ;;
     *) return;;
@@ -34,13 +33,11 @@ shopt -s histappend
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell
 
-# Enable Bash 4 features when possible: 
-# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
-# * Recursive globbing, e.g. `echo **/*.txt`
-for option in autocd globstar; do
-    shopt -s "$option" 2> /dev/null
-done
-unset option
+# `**/qux` will enter `./foo/bar/baz/qux`
+shopt -s autocd
+
+# Recursive globbing, e.g. `echo **/*.txt`
+shopt -s globstar
 
 # Add tab completion for SSH hostnames based on ~/.ssh/config
 # ignoring wildcards
@@ -51,10 +48,15 @@ unset option
     tr ' ' '\n')" scp sftp ssh
 
 # Make less more friendly for non-text input files, see lesspipe(1)
-[[ -x /usr/bin/lesspipe ]] && export LESSOPEN="|lesspipe %s"
+export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 
 # Let's be normal
 set -o emacs
 
 # Add postgres binaries to the path
 export PATH="$PATH:/Library/PostgreSQL/11/bin/"
+
+
+# Dark Terminal themes
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
