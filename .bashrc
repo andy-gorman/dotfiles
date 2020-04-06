@@ -7,9 +7,8 @@ case $- in
     *i*) ;;
     *) return;;
 esac
-
 # Load 
-for file in ~/.{bash_prompt,aliases,auto-completions,exports}; do
+for file in ~/.{bash_prompt,aliases,auto-completions,exports,projectrc}; do
     if [[ -r "$file" ]] && [[ -f "$file" ]]; then
         source "$file"
     fi
@@ -53,10 +52,10 @@ export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 # Let's be normal
 set -o emacs
 
-# Add postgres binaries to the path
-export PATH="$PATH:/Library/PostgreSQL/11/bin/"
-
-
 # Dark Terminal themes
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
+
+. /usr/local/opt/asdf/asdf.sh
+
+. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
