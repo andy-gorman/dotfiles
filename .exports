@@ -18,14 +18,9 @@ export LC_ALL="en_US.UTF-8";
 # Don't clear the screen after quitting a manual page
 export MANPAGE="less -x";
 
-# Setting PATH for Python 3.6
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
-PATH="/Applications/Postgres.app/Contents/Versions/9.6/bin:${PATH}"
-PATH="${HOME}/bin:${PATH}"
-export PATH
-
-
+# Git Duet
+export GIT_DUET_CO_AUTHORED_BY=1
+export GIT_DUET_GLOBAL=true
 
 # Stuff for go
 export GOPATH=/usr/local/go/bin
