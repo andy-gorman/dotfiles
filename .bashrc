@@ -73,3 +73,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Created by `pipx` on 2022-01-18 18:47:07
+export PATH="$PATH:/Users/andrewgorman/.local/bin"
