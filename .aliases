@@ -2,3 +2,4 @@
 # Aliases
 
 alias be='bundle exec'
+alias dcr='docker-compose run --rm'
