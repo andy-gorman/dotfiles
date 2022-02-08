@@ -1,0 +1,29 @@
+# This is Git's per-user configuration file.
+[alias]
+    # Last 20 commits, with a graph, one line per commit
+    l = log --pretty=oneline -n 20 --graph --abbrev-commit
+
+    s = status -s
+
+    tags = tags -l
+    branches = branch -a 
+    remotes = remote -v
+    
+    amend = commit --amend -CHEAD
+
+    up = !git pull origin main && git remote prune origin
+    co = checkout
+    pushf = push --force-with-lease
+
+[diff]
+    # Detect copies as well as renames
+    renames = copies
+[user]
+	name = Andrew Gorman
+	email = andy.gorman@carbonfive.com
+[pull]
+	rebase = true
+[push]
+    default = current
+[remote "origin"]
+	prune = true
