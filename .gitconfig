@@ -29,3 +29,5 @@
 	prune = true
 [init]
 	defaultBranch = main
+[core]
+	excludesfile = ~/.global_gitignore
