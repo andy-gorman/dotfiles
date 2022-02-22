@@ -27,3 +27,5 @@
     default = current
 [remote "origin"]
 	prune = true
+[init]
+	defaultBranch = main
