@@ -16,10 +16,10 @@
     pushf = push --force-with-lease
 
 [diff]
-    # Detect copies as well as renames
-    renames = copies
+  # Detect copies as well as renames
+  renames = copies
 [user]
-	name = Andrew Gorman
+	name = Andy Gorman
 	email = hi@gorman.zone
 [pull]
 	rebase = true

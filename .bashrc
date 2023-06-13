@@ -8,7 +8,7 @@ case $- in
     *) return;;
 esac
 # Load 
-for file in ~/.{bash_prompt,aliases,auto-completions,exports,projectrc}; do
+for file in ~/.{bash_prompt,aliases,auto-completions,exports,projectrc,path}; do
     if [[ -r "$file" ]] && [[ -f "$file" ]]; then
         source "$file"
     fi
