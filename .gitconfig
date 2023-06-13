@@ -20,7 +20,7 @@
   renames = copies
 [user]
 	name = Andy Gorman
-	email = agorman@auditboard.com
+	email = hi@gorman.zone
 [pull]
 	rebase = true
 [push]
