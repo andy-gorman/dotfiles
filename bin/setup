@@ -5,4 +5,7 @@ SCRIPT_PATH=${0%/*}
 if [ "$0" != "$SCRIPT_PATH" ] && [ "$SCRIPT_PATH" != "" ]; then
   cd "${SCRIPT_PATH}/.."
 fi
-
+ 
+for f in $(find $(pwd) -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".swp") ; do 
+	ln -sf "$f" $HOME
+done
