@@ -6,6 +6,34 @@ if [ "$0" != "$SCRIPT_PATH" ] && [ "$SCRIPT_PATH" != "" ]; then
   cd "${SCRIPT_PATH}/.."
 fi
  
+
+echo -e "Creating symlink for dotfiles\n"
+
+# symlink all the dotfiles
 for f in $(find $(pwd) -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".swp") ; do 
 	ln -sf "$f" $HOME
 done
+
+echo -e "Symlinks Created \n"
+
+VIM_PLUGINS_DIR=$HOME/.vim/pack
+
+VIM_PLUGINS=(
+	"ctrlpvim/ctrlp.vim"
+	"preservim/nerdtree"
+	"tpope/vim-projectionist"
+	"leafgarland/typescript-vim"
+)
+
+mkdir -p $VIM_PLUGINS_DIR
+
+echo -e "Downloading vim plugins\n"
+
+for PLUGIN in "${VIM_PLUGINS[@]}" ; do
+	PLUGIN_DIR="$VIM_PLUGINS_DIR/$(basename $PLUGIN)/start/$(basename $PLUGIN)"
+	if [ ! -d PLUGIN_DIR ] ; then
+		git clone git@github.com:$PLUGIN.git $PLUGIN_DIR
+	fi
+done
+
+echo -e "Vim Plugins Installed\n"
