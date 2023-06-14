@@ -1,4 +1,4 @@
-
+let mapleader = ","
 " be iMproved, required
 set nocompatible
 
@@ -26,7 +26,6 @@ au FocusLost * :wa		" Set vim to save the file on focus out.
 
 set fileformats=unix,mac,dos	" Prefer Unix over OS 9 over Windows formats
 
-set noshowmatch			" Do not show matching brackets by filckering
 set incsearch			" Shows the match while typeing
 set hlsearch 			" Highlight found searches
 set ignorecase			" Search case insensitive...
@@ -36,11 +35,67 @@ set lazyredraw			" Wait to redraw
 " speed up syntax highlighting
 set nocursorcolumn
 set nocursorline
+syntax enable
+
+set showmatch " highlight matching brace/paren/etc.
 
 " Tab settings
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set expandtab
+set noexpandtab
+set smartindent
+
+" Dont add an eol character
+set nofixeol
+
+" Key mappings
 imap jk <ESC>
-syntax enable
+
+" ctrl-p shortcuts
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=40
+
+" Move splits
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+
+" NERDTree shortcut
+map <c-b> :NERDTreeToggle<CR>
+
+
+" Projectionist mappings
+let g:projectionist_heuristics = {
+      \   '*': {
+      \     '*.ts': {
+			\				'alternate': '{}.hbs', 
+      \       'type': 'controller',
+      \     },
+		  \     '*.js': {
+		  \			  'alternate': '{}.hbs', 
+      \       'type': 'controller',
+      \     },
+			\     '*.hbs': {
+			\		    'alternate': ['{}.ts', '{}.js'],
+			\				'type': 'template'
+			\     }
+      \   }
+      \ }
+
+
+
+" resize splits on window resize
+" TODO: This isn't working! Figure out why
+autocmd VimResized = execute "normal! i hhhh"
+
+" use mouse
+set mouse=a
+
+" tab autocomplete options
+set wildmenu
+set wildmode=longest:full,full

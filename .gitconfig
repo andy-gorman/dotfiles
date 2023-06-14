@@ -22,9 +22,9 @@
 	name = Andy Gorman
 	email = agorman@auditboard.com
 [pull]
-	rebase = true
+	rebase = false
 [push]
-    default = current
+  default = current
 [remote "origin"]
 	prune = true
 [init]
