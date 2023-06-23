@@ -72,31 +72,46 @@ map <C-K> <C-W>k
 
 " NERDTree shortcut
 map <c-b> :NERDTreeToggle<CR>
+let g:NERDTreeWinSize=40
 
+" Sensible Folding
+set foldmethod=indent
+set foldlevelstart=1 " Probably change this at some point, but this is teaching me to use folds
+
+" Toggle fold at current position.
+nnoremap <s-tab> za
 
 " Projectionist mappings
 let g:projectionist_heuristics = {
-      \   '*': {
-      \     '*.ts': {
-			\				'alternate': '{}.hbs', 
-      \       'type': 'controller',
-      \     },
-		  \     '*.js': {
-		  \			  'alternate': '{}.hbs', 
-      \       'type': 'controller',
-      \     },
-			\     '*.hbs': {
-			\		    'alternate': ['{}.ts', '{}.js'],
-			\				'type': 'template'
-			\     }
-      \   }
-      \ }
+		\   '*': {
+		\     '*.ts': {
+		\				'alternate': '{}.hbs', 
+		\       'type': 'controller',
+		\     },
+		\     '*.js': {
+		\			  'alternate': '{}.hbs', 
+		\       'type': 'controller',
+		\     },
+		\     '*.hbs': {
+		\		    'alternate': ['{}.ts', '{}.js'],
+		\				'type': 'template'
+		\     }
+		\   }
+		\ }
 
+" LSP Configuration
+let g:LanguageClient_serverCommands = {
+		\ 'javascript': ['~/.volta/bin/typescript-language-server', '--stdio'],
+		\ 'typescript': ['~/.volta/bin/typescript-language-server', '--stdio'],
+		\ }
 
+let g:LanguageClient_rootMarkers = {
+		\ 'javascript': ['tsconfig.json'],
+		\ 'typescript': ['tsconfig.json'],
+		\ }
 
-" resize splits on window resize
-" TODO: This isn't working! Figure out why
-autocmd VimResized = execute "normal! i hhhh"
+nmap <silent> gd <Plug>(lcn-definition)
+nmap <silent> <c-f> <Plug>(lcn-code-action)
 
 " use mouse
 set mouse=a
