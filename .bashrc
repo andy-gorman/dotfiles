@@ -69,3 +69,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # Created by `pipx` on 2022-01-18 18:47:07
 export PATH="$PATH:/Users/andrewgorman/.local/bin"
+
+
+echo -ne "\e[5 q" # Set cursor style to blinking line
