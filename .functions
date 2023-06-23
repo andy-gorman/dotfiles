@@ -19,7 +19,3 @@ function tmux() {
 	SESSION_NAME=$(basename "$(pwd)")
 	tmux new -A -s "$SESSION_NAME"
 }
-
-function test() {
-	echo "$@"
-}
