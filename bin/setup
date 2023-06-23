@@ -23,6 +23,8 @@ VIM_PLUGINS=(
 	"preservim/nerdtree"
 	"tpope/vim-projectionist"
 	"leafgarland/typescript-vim"
+	"LanguageClient-neovim"
+	"autozimu/LanguageClient-neovim"
 )
 
 mkdir -p $VIM_PLUGINS_DIR
