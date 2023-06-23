@@ -52,6 +52,11 @@ set nofixeol
 " Key mappings
 imap jk <ESC>
 
+let &t_SI = "\e[5 q" " Vertical bar on insert mode
+let &t_EI = "\e[2 q" " Steady block on normal mode
+autocmd VimEnter * silent !echo -ne "\e[2 q"
+autocmd VimLeave * silent !echo -ne "\e[5 q"
+
 " ctrl-p shortcuts
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
