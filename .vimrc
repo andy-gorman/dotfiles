@@ -113,6 +113,11 @@ let g:LanguageClient_rootMarkers = {
 nmap <silent> gd <Plug>(lcn-definition)
 nmap <silent> <c-f> <Plug>(lcn-code-action)
 
+" Airline settings
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'dark'
+
+
 " use mouse
 set mouse=a
 

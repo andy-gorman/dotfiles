@@ -25,15 +25,19 @@ VIM_PLUGINS=(
 	"leafgarland/typescript-vim"
 	"LanguageClient-neovim"
 	"autozimu/LanguageClient-neovim"
+	"vim-airline/vim-airline"
+	"vim-airline/vim-airline-themes"
 )
 
-mkdir -p $VIM_PLUGINS_DIR
+if [ ! -d $VIM_PLUGINS_DIRJK] ; then
+	mkdir -p $VIM_PLUGINS_DIR
+fi
 
 echo -e "Downloading vim plugins\n"
 
 for PLUGIN in "${VIM_PLUGINS[@]}" ; do
 	PLUGIN_DIR="$VIM_PLUGINS_DIR/$(basename $PLUGIN)/start/$(basename $PLUGIN)"
-	if [ ! -d PLUGIN_DIR ] ; then
+	if [ ! -d $PLUGIN_DIR ] ; then
 		git clone git@github.com:$PLUGIN.git $PLUGIN_DIR
 	fi
 done
