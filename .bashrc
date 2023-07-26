@@ -52,13 +52,13 @@ export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 # Let's be normal
 set -o emacs
 
-# Dark Terminal themes
-export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
+# Base16 Shell
+BASE16_SHELL_PATH="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL_PATH/profile_helper.sh" ] && \
+        source "$BASE16_SHELL_PATH/profile_helper.sh"
 
-# . /usr/local/opt/asdf/asdf.sh
-
-# . /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
+base16_nord
 
 
 ## NVM
@@ -72,3 +72,4 @@ export PATH="$PATH:/Users/andrewgorman/.local/bin"
 
 
 echo -ne "\e[5 q" # Set cursor style to blinking line
+export VOLTA_FEATURE_PNPM=1
