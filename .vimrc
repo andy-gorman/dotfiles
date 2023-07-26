@@ -63,7 +63,6 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=40
-
 " Move splits
 map <C-h> <C-W>h
 map <C-l> <C-W>l
@@ -115,7 +114,7 @@ nmap <silent> <c-f> <Plug>(lcn-code-action)
 
 " Airline settings
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'dark'
+let g:airline_theme = 'base16_tomorrow_night'
 
 
 " use mouse
@@ -124,3 +123,16 @@ set mouse=a
 " tab autocomplete options
 set wildmenu
 set wildmode=longest:full,full
+set wildignore+=*/build/*,*/node_modules/*
+
+" Colors
+let base16_colorspace=256
+if exists('$BASE16_THEME')
+    \ && (!exists('g:colors_name')
+    \ || g:colors_name != 'base16-$BASE16_THEME')
+  let base16colorspace=256
+  colorscheme base16-$BASE16_THEME
+endif
+
+" Copy / paste
+set clipboard=unnamed
