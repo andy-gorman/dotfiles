@@ -23,10 +23,10 @@ VIM_PLUGINS=(
 	"preservim/nerdtree"
 	"tpope/vim-projectionist"
 	"leafgarland/typescript-vim"
-	"LanguageClient-neovim"
 	"autozimu/LanguageClient-neovim"
 	"vim-airline/vim-airline"
 	"vim-airline/vim-airline-themes"
+	"mustache/vim-mustache-handlebars"
 )
 
 if [ ! -d $VIM_PLUGINS_DIRJK] ; then

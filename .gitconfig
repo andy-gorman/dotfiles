@@ -21,6 +21,7 @@
 [user]
 	name = Andy Gorman
 	email = hi@gorman.zone
+	signingKey = 95A192DCA75324D5
 [pull]
 	rebase = false
 [push]
@@ -31,3 +32,7 @@
 	defaultBranch = main
 [core]
 	excludesfile = ~/.global_gitignore
+[tag]
+	forceSignAnnotated = true
+[commit]
+	gpgSign = true
