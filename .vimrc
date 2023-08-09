@@ -98,20 +98,6 @@ let g:projectionist_heuristics = {
 		\   }
 		\ }
 
-" LSP Configuration
-let g:LanguageClient_serverCommands = {
-		\ 'javascript': ['~/.volta/bin/typescript-language-server', '--stdio'],
-		\ 'typescript': ['~/.volta/bin/typescript-language-server', '--stdio'],
-		\ }
-
-let g:LanguageClient_rootMarkers = {
-		\ 'javascript': ['tsconfig.json'],
-		\ 'typescript': ['tsconfig.json'],
-		\ }
-
-nmap <silent> gd <Plug>(lcn-definition)
-nmap <silent> <c-f> <Plug>(lcn-code-action)
-
 " Airline settings
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'base16_tomorrow_night'
