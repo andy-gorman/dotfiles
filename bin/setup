@@ -29,9 +29,16 @@ VIM_PLUGINS=(
 	"mustache/vim-mustache-handlebars"
 )
 
-if [ ! -d $VIM_PLUGINS_DIRJK] ; then
+if [ ! -d $VIM_PLUGINS_DIR] ; then
 	mkdir -p $VIM_PLUGINS_DIR
 fi
+
+NEOVIM_CONFIG_DIR=$HOME/.config/nvim/
+if [ ! -d $NEOVIM_CONFIG_DIR ] ; then
+	mkdir -p $NEOVIM_CONFIG_DIR
+fi
+
+ln -sf 'init.lua' $NEOVIM_CONFIG_DIR
 
 echo -e "Downloading vim plugins\n"
 
