@@ -43,10 +43,8 @@ vim.api.nvim_set_keymap('', '<s-tab>', 'za', {noremap = true})
 vim.api.nvim_create_autocmd('FocusLost', { pattern = "*", command = ':wa' })		-- Set vim to save the file on focus out.
 
 -- Colors
---let base16_colorspace=256
---if exists('$BASE16_THEME')
---    \ && (!exists('g:colors_name')
---    \ || g:colors_name != 'base16-$BASE16_THEME')
---  let base16colorspace=256
---  colorscheme base16-$BASE16_THEME
---endif
+local current_theme_name = os.getenv('BASE16_THEME')
+if current_theme_name and vim.g.colors_name ~= 'base16-'..current_theme_name then
+	vim.cmd('let base16colorspace=256')
+  vim.cmd('colorscheme base16-'..current_theme_name)
+end
