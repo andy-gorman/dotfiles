@@ -7,3 +7,5 @@ alias dcu='docker-compose up -d'
 alias g='git'
 alias gs='git s'
 alias cat='bat'
+alias vim='nvim'
+
