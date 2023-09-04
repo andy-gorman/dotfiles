@@ -19,3 +19,6 @@
 [submodule "aspects/nvim/.config/nvim/colors/base16"]
 	path = aspects/nvim/.config/nvim/colors/base16
 	url = git@github.com:tinted-theming/base16-vim.git
+[submodule "aspects/tmux/base16-tmux"]
+	path = aspects/tmux/base16-tmux
+	url = git@github.com:tinted-theming/base16-tmux.git
