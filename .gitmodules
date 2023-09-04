@@ -1,0 +1,15 @@
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/ctrlp.vim"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/ctrlp.vim
+	url = git@github.com:ctrlpvim/ctrlp.vim.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/nerdtree"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/nerdtree
+	url = git@github.com:preservim/nerdtree.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-projectionist"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-projectionist
+	url = git@github.com:tpope/vim-projectionist.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-airline"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-airline
+	url = git@github.com:vim-airline/vim-airline.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-airline-themes"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-airline-themes
+	url = git@github.com:vim-airline/vim-airline-themes.git
