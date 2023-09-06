@@ -22,3 +22,12 @@
 [submodule "aspects/tmux/base16-tmux"]
 	path = aspects/tmux/base16-tmux
 	url = git@github.com:tinted-theming/base16-tmux.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-mustache-handlebars"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-mustache-handlebars
+	url = git@github.com:mustache/vim-mustache-handlebars.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/typescript-vim"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/typescript-vim
+	url = git@github.com:leafgarland/typescript-vim.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-lspconfig"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-lspconfig
+	url = git@github.com:neovim/nvim-lspconfig.git
