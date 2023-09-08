@@ -1,0 +1,21 @@
+# Based on: https://github.com/wincent/wincent/blob/26cbb767d04f3e958f76361ac246d918b2d86c13/.github/workflows/ci.yml
+#
+
+name: ci
+
+on: 
+  push: 
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  stylua:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: JohnnyMorganz/stylua-action@v3
+    with:
+      token: ${{ secrets.GITHUB_TOKEN }}
+      args: --allow-hidden --check .
+      version: "0.18.1"
