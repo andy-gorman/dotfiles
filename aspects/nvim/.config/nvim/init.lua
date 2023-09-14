@@ -26,7 +26,7 @@ vim.opt.wildmode = 'longest:full,full'
 vim.opt.wildignore = vim.opt.wildignore + '*/build/*,*/node_modules/*'
 
 -- Copy / paste
-clipboard=unnamed
+vim.opt.clipboard='unnamed'
 
 -- Escape Replacement
 vim.api.nvim_set_keymap('i', 'jk', '<ESC>', {})
