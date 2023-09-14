@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Author: Andy Gorman
+
+set -e
+
+REPO_ROOT="${BASH_SOURCE%/*}/.."
+
+cd "${REPO_ROOT}"
+
+stylua --allow-hidden .
