@@ -1,4 +1,6 @@
-vim.opt.number = true -- Show line numbers
+local cycle_numbering = function()
+	vim.wo.relativenumber = not vim.wo.relativenumber
+end
 
 vim.opt.splitright = true -- Split vertical windows right to the current windows
 vim.opt.splitbelow = true -- Split horizontal windows below to the current windows
@@ -49,3 +51,13 @@ if is_set_theme_file_readable then
 	vim.cmd("let base16colorspace=256")
 	vim.cmd("source" .. set_theme_path)
 end
+
+-- By default, show relative numbers
+vim.wo.number = true
+vim.wo.relativenumber = true
+
+-- leader mappings
+vim.g.mapleader = " "
+vim.keymap.set("n", "<Leader>r", function()
+	cycle_numbering()
+end)
