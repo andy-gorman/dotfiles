@@ -7,12 +7,6 @@
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-projectionist"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-projectionist
 	url = git@github.com:tpope/vim-projectionist.git
-[submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-airline"]
-	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-airline
-	url = git@github.com:vim-airline/vim-airline.git
-[submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-airline-themes"]
-	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-airline-themes
-	url = git@github.com:vim-airline/vim-airline-themes.git
 [submodule "aspects/bash/base16-shell"]
 	path = aspects/bash/base16-shell
 	url = git@github.com:tinted-theming/base16-shell.git
