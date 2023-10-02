@@ -27,6 +27,8 @@
 	signingKey = 95A192DCA75324D5
 [push]
   default = current
+[pull]
+	rebase = false
 [remote "origin"]
 	prune = true
 [init]
