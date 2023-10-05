@@ -61,3 +61,5 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<Leader>r", function()
 	cycle_numbering()
 end)
+vim.keymap.set("n", "<Leader>n", ":noh<CR>")
+vim.keymap.set("n", "<Leader>w", ":w")
