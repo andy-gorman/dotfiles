@@ -2,6 +2,10 @@ local cycle_numbering = function()
 	vim.wo.relativenumber = not vim.wo.relativenumber
 end
 
+-- Disable netrw, which I never use
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.opt.splitright = true -- Split vertical windows right to the current windows
 vim.opt.splitbelow = true -- Split horizontal windows below to the current windows
 vim.opt.autowrite = true -- Automatically save before :next, :make, etc.
