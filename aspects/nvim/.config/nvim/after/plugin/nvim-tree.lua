@@ -4,3 +4,6 @@ require("nvim-tree").setup({
 	},
 	filters = { custom = { "^.git$" } },
 })
+
+vim.keymap.set("n", "<Leader>t", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<Leader>T", ":NvimTreeFindFile<CR>")
