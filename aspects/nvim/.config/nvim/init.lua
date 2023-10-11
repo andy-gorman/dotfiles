@@ -69,4 +69,4 @@ vim.keymap.set("n", "<Leader>n", ":noh<CR>")
 vim.keymap.set("n", "<Leader>w", ":w<CR>")
 
 -- AutoCommands
-vim.api.nvim_create_autocmd({"FocusGained"}, {command = "checktime"})
+vim.api.nvim_create_autocmd({ "FocusGained" }, { command = "checktime" })
