@@ -14,7 +14,7 @@ vim.opt.smartcase = true -- ... but not when search patterns contains upper case
 vim.opt.showmatch = true -- highlight matching brace/paren/etc.
 -- Folding options
 vim.opt.foldmethod = "indent"
-vim.opt.foldlevelstart = 1 -- Probably change this at some point, but this is teaching me to use folds
+vim.opt.foldlevelstart = 99
 
 -- Tab settings
 vim.opt.tabstop = 2
