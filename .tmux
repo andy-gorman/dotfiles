@@ -8,7 +8,7 @@ if tmux has-session -t=dot 2> /dev/null; then
 	exit
 fi
 
-tmux new-session -d -s dot -n vim -x $(tput cols) -y $(tput lines)
+tmux new-session -d -s dot -n vim -x "$(tput cols)" -y "$(tput lines)"
 
 tmux split-window -t dot:vim -h
 
