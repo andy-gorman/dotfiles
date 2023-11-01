@@ -17,7 +17,6 @@
 
 [branch]
 	autosetupmerge = always
-	autosetuprebase = local
 [diff]
   # Detect copies as well as renames
   renames = copies
