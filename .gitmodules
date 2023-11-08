@@ -25,3 +25,6 @@
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-tree.lua"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-tree.lua
 	url = git@github.com:nvim-tree/nvim-tree.lua.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/rust.vim"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/rust.vim
+	url = git@github.com:rust-lang/rust.vim.git
