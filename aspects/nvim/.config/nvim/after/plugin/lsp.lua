@@ -1,14 +1,20 @@
 local lspconfig = require("lspconfig")
 
 -- Global mappings
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
+vim.keymap.set("n", "<Leader>q", vim.diagnostic.setloclist)
 
 local on_attach = function()
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = true, silent = true })
-	vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = true })
+	local opts = { buffer = true }
+	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+	vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+	vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+	vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
 end
 
 lspconfig.tsserver.setup({ on_attach = on_attach })
