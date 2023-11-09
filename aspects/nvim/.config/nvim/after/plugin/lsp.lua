@@ -13,4 +13,18 @@ end
 
 lspconfig.tsserver.setup({ on_attach = on_attach })
 lspconfig.glint.setup({ on_attach = on_attach })
-lspconfig.lua_ls.setup({ on_attach = on_attach})
+lspconfig.rust_analyzer.setup({ on_attach = on_attach })
+
+lspconfig.lua_ls.setup({
+	on_attach = on_attach,
+	settings = {
+		Lua = {
+			workspace = {
+				-- Maybe I will set this to true at some point, but not necessary for my current lua usage
+				checkThirdParty = false,
+				-- Make the server aware of Neovim runtime files.
+				library = vim.api.nvim_get_runtime_file("", true)
+			},
+		},
+	},
+})
