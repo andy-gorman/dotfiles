@@ -72,4 +72,3 @@ export PATH="$PATH:/Users/andrewgorman/.local/bin"
 echo -ne "\e[5 q" # Set cursor style to blinking line
 export GPG_TTY=$(tty) # Make sure GPG knows where to read input from
 export VOLTA_FEATURE_PNPM=1
-. "$HOME/.cargo/env"
