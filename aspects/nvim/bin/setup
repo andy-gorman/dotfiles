@@ -2,5 +2,4 @@
 # Author: Andy Gorman
 
 cd $(dirname "${BASH_SOURCE[0]}")/..
-cp -fr "$(pwd)/.config/nvim/colors/base16/colors/" "$(pwd)/.config/nvim/colors/"
 ln -sf "$(pwd)/.config/nvim" "${HOME}/.config/"
