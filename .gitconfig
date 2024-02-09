@@ -37,4 +37,4 @@
 [tag]
 	forceSignAnnotated = true
 [commit]
-	gpgSign = true
+	# gpgSign = true
