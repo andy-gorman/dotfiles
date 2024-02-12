@@ -50,10 +50,10 @@ vim.api.nvim_create_autocmd("FocusLost", { pattern = "*", command = ":wa" }) -- 
 
 -- Colors
 local set_theme_path = "$HOME/.config/tinted-theming/set_theme.lua"
-local is_set_theme_file_readable = vim.fn.filereadable(vim.fn.expand(set_theme_path)) == 1 and true or false
+local is_set_theme_file_readable = vim.fn.filereadable(vim.fn.expand(set_theme_path)) == 1
 if is_set_theme_file_readable then
-	vim.cmd("let base16colorspace=256")
-	vim.cmd("source" .. set_theme_path)
+	vim.g.base16_colorspace = 256
+	vim.cmd("source " .. set_theme_path)
 end
 
 -- By default, show relative numbers

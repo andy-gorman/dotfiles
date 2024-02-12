@@ -1,30 +1,18 @@
-[submodule "aspects/nvim/.config/nvim/pack/plugins/start/ctrlp.vim"]
-	path = aspects/nvim/.config/nvim/pack/plugins/start/ctrlp.vim
-	url = git@github.com:ctrlpvim/ctrlp.vim.git
-[submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-projectionist"]
-	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-projectionist
-	url = git@github.com:tpope/vim-projectionist.git
 [submodule "aspects/bash/base16-shell"]
 	path = aspects/bash/base16-shell
 	url = git@github.com:tinted-theming/base16-shell.git
-[submodule "aspects/nvim/.config/nvim/colors/base16"]
-	path = aspects/nvim/.config/nvim/colors/base16
-	url = git@github.com:tinted-theming/base16-vim.git
 [submodule "aspects/tmux/base16-tmux"]
 	path = aspects/tmux/base16-tmux
 	url = git@github.com:tinted-theming/base16-tmux.git
-[submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-mustache-handlebars"]
-	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-mustache-handlebars
-	url = git@github.com:mustache/vim-mustache-handlebars.git
-[submodule "aspects/nvim/.config/nvim/pack/plugins/start/typescript-vim"]
-	path = aspects/nvim/.config/nvim/pack/plugins/start/typescript-vim
-	url = git@github.com:leafgarland/typescript-vim.git
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-lspconfig"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-lspconfig
 	url = git@github.com:neovim/nvim-lspconfig.git
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-tree.lua"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-tree.lua
 	url = git@github.com:nvim-tree/nvim-tree.lua.git
-[submodule "aspects/nvim/.config/nvim/pack/plugins/start/rust.vim"]
-	path = aspects/nvim/.config/nvim/pack/plugins/start/rust.vim
-	url = git@github.com:rust-lang/rust.vim.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-projectionist"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-projectionist
+	url = git@github.com:tpope/vim-projectionist.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/ctrlp.vim"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/ctrlp.vim
+	url = git@github.com:ctrlpvim/ctrlp.vim.git
