@@ -48,14 +48,6 @@ vim.api.nvim_set_keymap("", "<s-tab>", "za", { noremap = true })
 
 vim.api.nvim_create_autocmd("FocusLost", { pattern = "*", command = ":wa" }) -- Set vim to save the file on focus out.
 
--- Colors
-local set_theme_path = "$HOME/.config/tinted-theming/set_theme.lua"
-local is_set_theme_file_readable = vim.fn.filereadable(vim.fn.expand(set_theme_path)) == 1
-if is_set_theme_file_readable then
-	vim.g.base16_colorspace = 256
-	vim.cmd("source " .. set_theme_path)
-end
-
 -- By default, show relative numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
