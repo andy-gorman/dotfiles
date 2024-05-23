@@ -19,12 +19,6 @@
 [submodule "aspects/nvim/.config/nvim/colors/base16-nvim"]
 	path = aspects/nvim/.config/nvim/colors/base16-nvim
 	url = git@github.com:wincent/base16-nvim.git
-[submodule "aspects/nvim/.config/nvim/pack/plugins/start/typescript-vim"]
-	path = aspects/nvim/.config/nvim/pack/plugins/start/typescript-vim
-	url = git@github.com:leafgarland/typescript-vim.git
-[submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-mustache-handlebars"]
-	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-mustache-handlebars
-	url = git@github.com:mustache/vim-mustache-handlebars.git
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-fugitive"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
