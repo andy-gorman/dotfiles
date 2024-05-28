@@ -28,7 +28,7 @@ lspconfig.lua_ls.setup({
 				-- Maybe I will set this to true at some point, but not necessary for my current lua usage
 				checkThirdParty = false,
 				-- Make the server aware of Neovim runtime files.
-				library = vim.api.nvim_get_runtime_file("", true)
+				library = vim.api.nvim_get_runtime_file("", true),
 			},
 		},
 	},

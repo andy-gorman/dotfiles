@@ -5,4 +5,3 @@ if is_set_theme_file_readable then
 	-- vim.g.base16_colorspace = 256
 	vim.cmd("source " .. set_theme_path)
 end
-

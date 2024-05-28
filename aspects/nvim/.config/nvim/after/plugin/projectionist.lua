@@ -14,23 +14,23 @@ vim.g.projectionist_heuristics = {
 		},
 		["controller.js"] = {
 			["alternate"] = "template.hbs",
-			["type"] = "controller"
+			["type"] = "controller",
 		},
 		["controller.ts"] = {
 			["alternate"] = "template.hbs",
-			["type"] = "controller"
+			["type"] = "controller",
 		},
 		["template.hbs"] = {
 			["alternate"] = { "route.ts", "route.js" },
-			["type"] = "template"
+			["type"] = "template",
 		},
 		["route.ts"] = {
 			["alternate"] = { "controller.ts", "controller.js" },
-			["type"] = "route"
+			["type"] = "route",
 		},
 		["route.js"] = {
 			["alternate"] = { "controller.ts", "controller.js" },
-			["type"] = "route"
+			["type"] = "route",
 		},
 	},
 }
