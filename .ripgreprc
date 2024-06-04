@@ -1,0 +1,4 @@
+
+# Add glimmer template types
+--type-add
+gts:*.{gts,gjs}*
