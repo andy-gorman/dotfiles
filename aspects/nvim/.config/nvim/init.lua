@@ -16,6 +16,9 @@ vim.opt.showmatch = true -- highlight matching brace/paren/etc.
 vim.opt.foldmethod = "indent"
 vim.opt.foldlevelstart = 99
 
+-- Enable project level settings
+vim.opt.exrc = true
+
 -- Tab settings
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
