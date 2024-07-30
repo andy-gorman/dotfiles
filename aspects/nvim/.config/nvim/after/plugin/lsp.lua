@@ -18,9 +18,9 @@ end
 
 lspconfig.tsserver.setup({
 	init_options = {
-		maxTsServerMemory = 16384 -- Unhinged
+		maxTsServerMemory = 16384, -- Unhinged
 	},
-	on_attach = on_attach
+	on_attach = on_attach,
 })
 lspconfig.glint.setup({ on_attach = on_attach })
 lspconfig.rust_analyzer.setup({ on_attach = on_attach })
