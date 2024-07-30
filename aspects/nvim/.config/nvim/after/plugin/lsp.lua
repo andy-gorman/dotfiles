@@ -16,7 +16,12 @@ local on_attach = function()
 	vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
 end
 
-lspconfig.tsserver.setup({ on_attach = on_attach })
+lspconfig.tsserver.setup({
+	init_options = {
+		maxTsServerMemory = 16384 -- Unhinged
+	},
+	on_attach = on_attach
+})
 lspconfig.glint.setup({ on_attach = on_attach })
 lspconfig.rust_analyzer.setup({ on_attach = on_attach })
 
