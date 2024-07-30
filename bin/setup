@@ -12,7 +12,7 @@ fi
 echo -e "Creating symlink for dotfiles\n"
 
 # symlink all the dotfiles
-for f in $(find $(pwd) -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".swp") ; do
+for f in $(find $(pwd) -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".swp" -not -name ".tmux") ; do
 	ln -sf "$f" $HOME
 done
 
