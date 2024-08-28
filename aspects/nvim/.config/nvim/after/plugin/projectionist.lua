@@ -1,5 +1,21 @@
 vim.g.projectionist_heuristics = {
 	["*"] = {
+		["*.gts"] = {
+			["alternate"] = {"{}-provider.ts", "{}-provider.js"},
+			["type"] = "template"
+		},
+		["*.gjs"] = {
+			["alternate"] = {"{}-provider.ts", "{}-provider.js"},
+			["type"] = "template"
+		},
+		["*-provider.ts"] = {
+			["alternate"] = {"{}.gts", "{}.gjs"},
+			["type"] = "provider"
+		},
+		["*-provider.js"] = {
+			["alternate"] = {"{}.gjs", "{}.gts"},
+			["type"] = "provider"
+		},
 		["*.ts"] = {
 			["alternate"] = "{}.hbs",
 			["type"] = "controller",
