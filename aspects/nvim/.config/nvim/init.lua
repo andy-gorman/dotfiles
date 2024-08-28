@@ -68,4 +68,6 @@ vim.api.nvim_create_autocmd({ "FocusGained" }, { command = "checktime" })
 
 
 -- Plugins
-require('wincent.commandt').setup()
+require('wincent.commandt').setup({
+	always_show_dot_files = true,
+})
