@@ -22,3 +22,6 @@
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/vim-fugitive"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/vim-fugitive
 	url = git@github.com:tpope/vim-fugitive.git
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/command-t"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/command-t
+	url = git@github.com:wincent/command-t.git

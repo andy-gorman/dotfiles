@@ -65,3 +65,7 @@ vim.keymap.set("n", "<Leader>w", ":w<CR>")
 
 -- AutoCommands
 vim.api.nvim_create_autocmd({ "FocusGained" }, { command = "checktime" })
+
+
+-- Plugins
+require('wincent.commandt').setup()
