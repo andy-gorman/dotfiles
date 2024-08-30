@@ -1,5 +1,5 @@
 [submodule "aspects/bash/base16-shell"]
-	path = aspects/bash/base16-shell
+	path = aspects/bash/files/base16-shell
 	url = git@github.com:tinted-theming/base16-shell.git
 [submodule "aspects/tmux/base16-tmux"]
 	path = aspects/tmux/base16-tmux
