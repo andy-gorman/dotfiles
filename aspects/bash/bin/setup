@@ -2,7 +2,7 @@
 # Author: Andy Gorman
 
 pushd $(dirname "${BASH_SOURCE[0]}")/..
-ln -sf "$(pwd)/base16-shell" "${HOME}/.config/base16-shell"
+ln -sf "$(pwd)/files/base16-shell" "${HOME}/.config/"
 echo -e "Creating symlink for dotfiles\n"
 
 # symlink all the dotfiles
