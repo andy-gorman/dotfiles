@@ -1,1 +1,3 @@
-[ ] - Reload buffers on focus
+* How to cleanup deleted submodules on pull
+* Build command-t on pull
+* How to use submodule official releases
