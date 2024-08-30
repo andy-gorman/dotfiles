@@ -6,7 +6,7 @@ ln -sf "$(pwd)/base16-shell" "${HOME}/.config/base16-shell"
 echo -e "Creating symlink for dotfiles\n"
 
 # symlink all the dotfiles
-for f in $(find $(pwd) -name ".*" -not -name ".gitignore" -not -name ".swp") ; do
+for f in $(find "$(pwd)/files" -name ".*" -not -name ".gitignore" -not -name ".swp") ; do
 	ln -sf "$f" $HOME
 done
 

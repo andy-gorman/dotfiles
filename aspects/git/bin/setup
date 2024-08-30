@@ -6,8 +6,8 @@ pushd $(dirname "${BASH_SOURCE[0]}")/..
 echo -e "Creating symlink for git config files\n"
 
 # symlink all the dotfiles
-ln -sf "./files/.gitconfig" $HOME
-ln -sf "./files/.global_gitignore" $HOME
+ln -sf "$(pwd)/files/.gitconfig" $HOME
+ln -sf "$(pwd)/files/.global_gitignore" $HOME
 
 echo -e "Symlinks Created \n"
 popd
