@@ -28,5 +28,8 @@ export GOPATH=/usr/local/go/bin
 # Silence the zsh warning on os x
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+# I think Husky is annnoying!
+export HUSKY=0
+#
 # Ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
