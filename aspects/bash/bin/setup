@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Author: Andy Gorman
 
-pushd $(dirname "${BASH_SOURCE[0]}")/..
+pushd $(dirname "${BASH_SOURCE[0]}")/.. &> /dev/null
 ln -sf "$(pwd)/files/base16-shell" "${HOME}/.config/"
 echo -e "Creating symlink for dotfiles\n"
 
@@ -11,5 +11,5 @@ for f in $(find "$(pwd)/files" -name ".*" -not -name ".gitignore" -not -name ".s
 done
 
 echo -e "Symlinks Created \n"
-popd
-
+popd &> /dev/null
+ 
