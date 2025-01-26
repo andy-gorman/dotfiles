@@ -13,3 +13,8 @@
 
 - tmux should be module specific
 
+- Add prettier + js/ts linter LSPs
+
+## Useful tools
+
+- Per project specific settings: LSP configs!
