@@ -18,7 +18,8 @@ end
 
 lspconfig.ts_ls.setup({
 	init_options = {
-		maxTsServerMemory = 16384, -- Unhinged
+		hostInfo = 'neovim',
+		maxTsServerMemory = 24576, -- Unhinged
 	},
 	on_attach = on_attach,
 })
