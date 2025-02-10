@@ -5,3 +5,7 @@
 !.git/*
 
 --smart-case
+
+# Add 'gts' type.
+--type-add
+gts:*.{gts}*

@@ -33,3 +33,7 @@ export HUSKY=0
 #
 # Ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+
+
+# Node Options
+export NODE_OPTIONS="--max_old_space_size=8192"

@@ -23,7 +23,17 @@ lspconfig.ts_ls.setup({
 	},
 	on_attach = on_attach,
 })
--- lspconfig.glint.setup({ on_attach = on_attach })
+lspconfig.glint.setup({ on_attach = on_attach })
+lspconfig.eslint.setup({
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+		on_attach()
+  end,
+})
+
 lspconfig.rust_analyzer.setup({ on_attach = on_attach })
 
 lspconfig.lua_ls.setup({
