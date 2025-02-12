@@ -18,20 +18,20 @@ end
 
 lspconfig.ts_ls.setup({
 	init_options = {
-		hostInfo = 'neovim',
+		hostInfo = "neovim",
 		maxTsServerMemory = 24576, -- Unhinged
 	},
 	on_attach = on_attach,
 })
 lspconfig.glint.setup({ on_attach = on_attach })
 lspconfig.eslint.setup({
-  on_attach = function(client, bufnr)
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = bufnr,
-      command = "EslintFixAll",
-    })
+	on_attach = function(client, bufnr)
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = bufnr,
+			command = "EslintFixAll",
+		})
 		on_attach()
-  end,
+	end,
 })
 
 lspconfig.rust_analyzer.setup({ on_attach = on_attach })
