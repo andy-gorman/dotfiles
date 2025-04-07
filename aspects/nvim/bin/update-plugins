@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Author: Andy Gorman
+
+set -e 
+
+cd $(dirname "${BASH_SOURCE[0]}")/..
+git submodule foreach '
+  if [[ $sm_path =~ aspects/nvim/.config/nvim/pack/plugins ]]; then
+		BRANCH=$(git config -f $toplevel/.gitmodules submodule."$name".branch)
+		git remote update --prune
+		git checkout $BRANCH
+	  git pull --recurse-submodules
+		vim -u NONE -c "helptags doc" -c q
+
+		if [[ $sm_path =~ aspects/nvim/.config/nvim/pack/plugins/start/command-t ]]; then
+			cd lua/wincent/commandt/lib 
+			make
+		fi
+  fi
+'
+ln -sf "$(pwd)/.config/nvim" "${HOME}/.config/"

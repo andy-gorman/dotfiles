@@ -70,3 +70,8 @@ vim.api.nvim_create_autocmd({ "FocusGained" }, { command = "checktime" })
 require("wincent.commandt").setup({
 	always_show_dot_files = true,
 })
+
+-- Diagnostic
+vim.diagnostic.config({
+	virtual_lines = true,
+})

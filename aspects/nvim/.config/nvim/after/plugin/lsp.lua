@@ -2,8 +2,13 @@ local lspconfig = require("lspconfig")
 
 -- Global mappings
 vim.keymap.set("n", "<Leader>e", vim.diagnostic.open_float)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end)
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end)
+
 vim.keymap.set("n", "<Leader>q", vim.diagnostic.setloclist)
 
 local on_attach = function()
@@ -25,7 +30,7 @@ lspconfig.ts_ls.setup({
 })
 lspconfig.glint.setup({ on_attach = on_attach })
 lspconfig.eslint.setup({
-	on_attach = function(client, bufnr)
+	on_attach = function(_, bufnr)
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			buffer = bufnr,
 			command = "EslintFixAll",
