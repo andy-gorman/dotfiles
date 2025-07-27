@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 
+
 # My .bashrc file. 
 
 # Don't do anything if we are not running interactively
@@ -65,9 +65,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-
-# Created by `pipx` on 2022-01-18 18:47:07
-export PATH="$PATH:/Users/andrewgorman/.local/bin"
 
 echo -ne "\e[5 q" # Set cursor style to blinking line
 export GPG_TTY=$(tty) # Make sure GPG knows where to read input from

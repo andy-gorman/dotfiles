@@ -6,10 +6,6 @@
 	path = aspects/tmux/files/base16-tmux
 	url = git@github.com:tinted-theming/base16-tmux.git
 	branch = main
-[submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-lspconfig"]
-	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-lspconfig
-	url = git@github.com:neovim/nvim-lspconfig.git
-	branch = master
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-tree.lua"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-tree.lua
 	url = git@github.com:nvim-tree/nvim-tree.lua.git
