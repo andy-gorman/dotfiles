@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gr", vim.lsp.buf.references)
 		vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action)
 		vim.keymap.set("n", "<Leader>cr", vim.lsp.buf.rename)
-	end
+	end,
 })
 
 vim.lsp.enable({
@@ -26,7 +26,7 @@ vim.lsp.enable({
 	"glint",
 	"gopls",
 	"lua_ls",
-	"rust_analyzer"
+	"rust_analyzer",
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
