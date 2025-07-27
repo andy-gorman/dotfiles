@@ -9,3 +9,5 @@
 # Add 'gts' type.
 --type-add
 gts:*.{gts}*
+--type-add
+mjml:*.{mjml}*
