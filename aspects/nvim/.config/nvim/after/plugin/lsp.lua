@@ -11,46 +11,34 @@ end)
 
 vim.keymap.set("n", "<Leader>q", vim.diagnostic.setloclist)
 
-local on_attach = function()
-	local opts = { buffer = true }
-	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-	vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-	vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts)
-end
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
+vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
+vim.keymap.set("n", "gr", vim.lsp.buf.references)
+vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action)
 
-lspconfig.ts_ls.setup({
-	init_options = {
-		hostInfo = "neovim",
-		maxTsServerMemory = 24576, -- Unhinged
-	},
-	on_attach = on_attach,
-})
-lspconfig.glint.setup({ on_attach = on_attach })
-lspconfig.eslint.setup({
-	on_attach = function(_, bufnr)
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = bufnr,
-			command = "EslintFixAll",
-		})
-		on_attach()
-	end,
-})
+-- lspconfig.glint.setup({ on_attach = on_attach })
 
-lspconfig.rust_analyzer.setup({ on_attach = on_attach })
+lspconfig.rust_analyzer.setup({})
 
 lspconfig.lua_ls.setup({
-	on_attach = on_attach,
 	settings = {
 		Lua = {
 			workspace = {
 				-- Maybe I will set this to true at some point, but not necessary for my current lua usage
 				checkThirdParty = false,
 				-- Make the server aware of Neovim runtime files.
-				library = vim.api.nvim_get_runtime_file("", true),
+				 library = {
+          vim.env.VIMRUNTIME
+          -- Depending on the usage, you might want to add additional paths
+          -- here.
+          -- '${3rd}/luv/library'
+          -- '${3rd}/busted/library'
+        }
 			},
 		},
 	},
 })
+
+vim.lsp.enable('tsgo')
