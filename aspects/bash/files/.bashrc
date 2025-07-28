@@ -70,6 +70,11 @@ echo -ne "\e[5 q" # Set cursor style to blinking line
 export GPG_TTY=$(tty) # Make sure GPG knows where to read input from
 export VOLTA_FEATURE_PNPM=1
 
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+eval "$(direnv hook bash)"
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"

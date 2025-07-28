@@ -37,3 +37,6 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # Node Options
 export NODE_OPTIONS="--max_old_space_size=8192"
+
+# PNPM / Volta (maybe move this to auditboard specific dotfiles?)
+export VOLTA_FEATURE_PNPM=1
