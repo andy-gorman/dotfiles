@@ -1,5 +1,5 @@
 return {
-	cmd = { "glint-language-server" },
+	cmd = { "bunx", "glint-language-server" },
 	filetypes = {
 		"html.handlebars",
 		"handlebars",

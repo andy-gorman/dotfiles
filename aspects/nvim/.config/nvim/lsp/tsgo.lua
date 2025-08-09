@@ -1,5 +1,5 @@
 return {
-	cmd = { os.getenv("BUN_INSTALL") .. "/bin/bunx", "dlx", "@typescript/native-preview", "--lsp", "--stdio" },
+	cmd = { "bunx", "@typescript/native-preview", "--lsp", "--stdio" },
 	filetypes = {
 		"javascript",
 		"javascriptreact",
