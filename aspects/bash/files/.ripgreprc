@@ -10,4 +10,6 @@
 --type-add
 gts:*.{gts}*
 --type-add
+gjs:*.{gjs}*
+--type-add
 mjml:*.{mjml}*

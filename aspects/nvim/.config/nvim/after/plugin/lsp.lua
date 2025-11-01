@@ -87,3 +87,12 @@ end, {
   nargs = '?',
 })
 
+vim.api.nvim_create_user_command('LspStop', function()
+  for _, client in ipairs(vim.lsp.get_clients()) do
+		client:stop()
+  end
+end, {
+	desc = 'Manully stop language clients',
+	nargs = '?',
+})
+
