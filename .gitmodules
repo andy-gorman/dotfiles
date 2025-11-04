@@ -3,7 +3,7 @@
 	url = git@github.com:tinted-theming/base16-shell.git
 	branch = main
 [submodule "aspects/tmux/base16-tmux"]
-	path = aspects/tmux/files/base16-tmux
+	path = aspects/bash/files/base16-tmux
 	url = git@github.com:tinted-theming/base16-tmux.git
 	branch = main
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-tree.lua"]
