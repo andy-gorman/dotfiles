@@ -3,18 +3,4 @@
 
 set -e
 
-SCRIPT_PATH=${0%/*}
-if [ "$0" != "$SCRIPT_PATH" ] && [ "$SCRIPT_PATH" != "" ]; then
-  cd "${SCRIPT_PATH}/.."
-fi
- 
-
-echo -e "Creating symlink for dotfiles\n"
-
-# symlink all the dotfiles
-for f in $(find $(pwd) -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".swp" -not -name ".tmux") ; do
-	ln -sf "$f" $HOME
-done
-
-echo -e "Symlinks Created \n"
-
+echo "Needs implementation"
