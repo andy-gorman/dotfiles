@@ -1,9 +1,9 @@
 [submodule "aspects/bash/base16-shell"]
-	path = aspects/bash/files/base16-shell
+	path = aspects/dotfiles/files/base16-shell
 	url = git@github.com:tinted-theming/base16-shell.git
 	branch = main
 [submodule "aspects/tmux/base16-tmux"]
-	path = aspects/bash/files/base16-tmux
+	path = aspects/dotfiles/files/base16-tmux
 	url = git@github.com:tinted-theming/base16-tmux.git
 	branch = main
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-tree.lua"]
