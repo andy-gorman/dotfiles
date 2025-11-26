@@ -55,36 +55,40 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
-vim.api.nvim_create_user_command("LspRestart", function()
-	local detach_clients = {}
-	for _, client in ipairs(vim.lsp.get_clients()) do
-		client:stop()
-		if vim.tbl_count(client.attached_buffers) > 0 then
-			detach_clients[client.name] = { client, vim.lsp.get_buffers_by_client_id(client.id) }
+vim.api.nvim_create_user_command("LspRestart", function(info)
+	local client_names = info.fargs
+
+	if #client_names == 0 then
+		client_names = vim.iter(vim.lsp.get_clients())
+			:map(function(client)
+				return client.name
+			end)
+			:totable()
+	end
+
+	for name in vim.iter(client_names) do
+		if vim.lsp.config[name] == nil then
+			vim.notify(("Invalid servername '%s'"):format(name))
+		else
+			vim.lsp.enable(name, false)
+			if info.bang then
+				vim.iter(vim.lsp.get_clients({ name = name })):each(function(client)
+					client:stop(true)
+				end)
+			end
 		end
 	end
+
 	local timer = assert(vim.uv.new_timer())
-	timer:start(
-		500,
-		100,
-		vim.schedule_wrap(function()
-			for client_name, tuple in pairs(detach_clients) do
-				local client, attached_buffers = unpack(tuple)
-				if client.is_stopped() then
-					for _, buf in pairs(attached_buffers) do
-						vim.lsp.start(client.config, { bufnr = buf })
-					end
-					detach_clients[client_name] = nil
-				end
-			end
-			if next(detach_clients) == nil and not timer:is_closing() then
-				timer:close()
-			end
-		end)
-	)
+	timer:start(500, 0, function()
+		for name in vim.iter(client_names) do
+			vim.schedule_wrap(vim.lsp.enable)(name)
+		end
+	end)
 end, {
 	desc = "Manually restart the given language client(s)",
 	nargs = "?",
+	bang = true,
 })
 
 vim.api.nvim_create_user_command("LspStop", function()
