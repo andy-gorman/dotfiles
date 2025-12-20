@@ -6,7 +6,5 @@ alias dcr='docker-compose run --rm'
 alias dcu='docker-compose up -d'
 alias g='git'
 alias gs='git s'
-alias cat='bat'
-alias vim='nvim'
 alias ls='gls --color=auto'
 
