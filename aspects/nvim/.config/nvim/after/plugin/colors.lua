@@ -1,7 +1,12 @@
 vim.opt.termguicolors = true
-local set_theme_path = "$HOME/.config/tinted-theming/set_theme.lua"
-local is_set_theme_file_readable = vim.fn.filereadable(vim.fn.expand(set_theme_path)) == 1
-if is_set_theme_file_readable then
-	-- vim.g.base16_colorspace = 256
-	vim.cmd("source " .. set_theme_path)
-end
+
+-- Set colorscheme based on BASE16_THEME environment variable
+local base16_theme = vim.env.BASE16_THEME or 'nord'
+local colorscheme = 'base16-' .. base16_theme
+
+require('tinted-colorscheme').setup(colorscheme, {
+  supports = {
+    tinty = false,
+    live_reload = false
+  }
+})
