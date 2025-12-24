@@ -10,9 +10,7 @@ export HISTFILESIZE=$HISTSIZE;
 export HISTCONTROL=ignoredups;
 # Make some commands not show up in history
 export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:* --help:* -h:pony:pony add *:pony update *:pony save *:pony ls:pony ls *";
-
-# Prefer US Engilsh and use UTF-8
-export LANG="en_US.UTF-8";
+# Prefer US Engilsh and use UTF-8 export LANG="en_US.UTF-8";
 export LC_ALL="en_US.UTF-8";
 
 # Don't clear the screen after quitting a manual page
@@ -38,5 +36,3 @@ export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 # Node Options
 export NODE_OPTIONS="--max_old_space_size=8192"
 
-# PNPM / Volta (maybe move this to auditboard specific dotfiles?)
-export VOLTA_FEATURE_PNPM=1
