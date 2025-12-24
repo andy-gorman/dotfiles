@@ -34,6 +34,7 @@ vim.lsp.enable({
 	"gopls",
 	"lua_ls",
 	"rust_analyzer",
+	"bash_ls"
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
