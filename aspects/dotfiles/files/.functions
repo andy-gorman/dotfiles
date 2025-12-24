@@ -3,7 +3,7 @@
 # Copied from https://github.com/wincent/wincent/blob/f7c51dfd808ea78ec10d6501eaa28f0a5b4796e9/roles/dotfiles/files/.zsh/functions
 function tmux() {
 	# If provided with args, pass them through
-	if [[ -n "$@" ]]; then
+	if [[ -n "$*" ]]; then
 		command tmux "$@"
 		return
 	fi
