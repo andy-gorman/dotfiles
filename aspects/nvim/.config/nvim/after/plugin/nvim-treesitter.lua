@@ -27,3 +27,10 @@ vim.api.nvim_create_user_command("TSInstallConfigured", function()
 	require("nvim-treesitter").install(languages)
 end, {})
 
+
+require('incremental-selection').setup({
+	init = '<CR>',        -- normal mode: start selection
+	increment = '<CR>',   -- visual mode: expand to parent
+	scope = '<TAB>',      -- visual mode: expand to scope
+	decrement = '<BS>',   -- visual mode: shrink
+})
