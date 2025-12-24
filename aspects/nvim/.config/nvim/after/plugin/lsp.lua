@@ -9,6 +9,13 @@ end)
 
 vim.keymap.set("n", "<Leader>q", vim.diagnostic.setloclist)
 
+vim.api.nvim_create_user_command("LspRestart", function()
+	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+		vim.lsp.stop_client(client.id)
+	end
+	vim.cmd("edit")
+end, {})
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function()
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
@@ -55,47 +62,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	end,
 })
 
-vim.api.nvim_create_user_command("LspRestart", function(info)
-	local client_names = info.fargs
 
-	if #client_names == 0 then
-		client_names = vim.iter(vim.lsp.get_clients())
-			:map(function(client)
-				return client.name
-			end)
-			:totable()
-	end
-
-	for name in vim.iter(client_names) do
-		if vim.lsp.config[name] == nil then
-			vim.notify(("Invalid servername '%s'"):format(name))
-		else
-			vim.lsp.enable(name, false)
-			if info.bang then
-				vim.iter(vim.lsp.get_clients({ name = name })):each(function(client)
-					client:stop(true)
-				end)
-			end
-		end
-	end
-
-	local timer = assert(vim.uv.new_timer())
-	timer:start(500, 0, function()
-		for name in vim.iter(client_names) do
-			vim.schedule_wrap(vim.lsp.enable)(name)
-		end
-	end)
-end, {
-	desc = "Manually restart the given language client(s)",
-	nargs = "?",
-	bang = true,
-})
-
-vim.api.nvim_create_user_command("LspStop", function()
-	for _, client in ipairs(vim.lsp.get_clients()) do
-		client:stop()
-	end
-end, {
-	desc = "Manully stop language clients",
-	nargs = "?",
-})
