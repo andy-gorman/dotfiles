@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-# Author: Andy Gorman
-
-cd $(dirname "${BASH_SOURCE[0]}")/..
-ln -sf "$(pwd)/files/base16-tmux" "${HOME}/.tmux/plugins"
-ln -sf "$(pwd)/files/.tmux.conf" "${HOME}"

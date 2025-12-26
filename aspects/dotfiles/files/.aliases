@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Aliases
+
+alias be='bundle exec'
+alias dcr='docker-compose run --rm'
+alias dcu='docker-compose up -d'
+alias g='git'
+alias gs='git s'
