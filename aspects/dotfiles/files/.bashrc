@@ -54,7 +54,7 @@ set -o emacs
 
 # Tinted Shell
 TINTED_SHELL_ENABLE_BASE24_VARS=1
-. $HOME/.config/base16-shell/scripts/base24-tomorrow-night.sh
+source $HOME/.config/base16-shell/scripts/base16-nord.sh
 
 
 ## NVM
