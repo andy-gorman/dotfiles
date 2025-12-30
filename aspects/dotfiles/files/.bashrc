@@ -57,7 +57,7 @@ BASE16_SHELL_PATH="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL_PATH/profile_helper.sh" ] && \
         source "$BASE16_SHELL_PATH/profile_helper.sh"
-base16_nord
+base16_gruvbox-material-dark-soft
 
 
 ## NVM
@@ -66,7 +66,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 
-echo -ne "\e[5 q" # Set cursor style to blinking line
 export GPG_TTY=$(tty) # Make sure GPG knows where to read input from
 export VOLTA_FEATURE_PNPM=1
 

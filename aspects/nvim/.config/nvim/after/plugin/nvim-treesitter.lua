@@ -34,3 +34,12 @@ require('incremental-selection').setup({
 	scope = '<TAB>',      -- visual mode: expand to scope
 	decrement = '<BS>',   -- visual mode: shrink
 })
+
+
+-- Override the <CR> we set for incremental-selection in quickfix menu 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "qf",
+	callback = function()
+		vim.keymap.set("n", "<CR>", "<CR>", { buffer = true, noremap = true })
+	end,
+})
