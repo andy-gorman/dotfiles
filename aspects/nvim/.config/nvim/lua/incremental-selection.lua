@@ -31,8 +31,8 @@ end
 
 ---@return Range
 function Range.visual()
-	local _, srow, scol, _ = unpack(vim.fn.getpos('.'))
-	local _, erow, ecol, _ = unpack(vim.fn.getpos('v'))
+	local _, srow, scol, _ = unpack(vim.fn.getpos("."))
+	local _, erow, ecol, _ = unpack(vim.fn.getpos("v"))
 	srow, scol, erow, ecol = srow - 1, scol - 1, erow - 1, ecol - 1
 	if srow < erow or (srow == erow and scol <= ecol) then
 		return Range.new({ srow, scol, erow, ecol })
@@ -120,7 +120,7 @@ local node_stack = NodeStack.new()
 ---@param language string
 ---@return boolean
 local function has_locals_query(language)
-	return #vim.treesitter.query.get_files(language, 'locals') > 0
+	return #vim.treesitter.query.get_files(language, "locals") > 0
 end
 
 ---@param buf integer
@@ -131,7 +131,7 @@ local function parse(buf, language)
 	if not has or not parser then
 		return nil
 	end
-	local first, last = vim.fn.line('w0'), vim.fn.line('w$')
+	local first, last = vim.fn.line("w0"), vim.fn.line("w$")
 	parser:parse({ first - 1, last })
 	return parser
 end
@@ -139,11 +139,11 @@ end
 ---@param node TSNode
 local function select_node(node)
 	local range = Range.node(node)
-	if vim.api.nvim_get_mode().mode ~= 'v' then
-		vim.cmd.normal({ 'v', bang = true })
+	if vim.api.nvim_get_mode().mode ~= "v" then
+		vim.cmd.normal({ "v", bang = true })
 	end
 	vim.api.nvim_win_set_cursor(0, range:cursor_start())
-	vim.cmd.normal({ 'o', bang = true })
+	vim.cmd.normal({ "o", bang = true })
 	vim.api.nvim_win_set_cursor(0, range:cursor_end())
 end
 
@@ -155,7 +155,7 @@ local function get_scopes(buf, language, root)
 	if not has_locals_query(language) then
 		return {}
 	end
-	local query = vim.treesitter.query.get(language, 'locals')
+	local query = vim.treesitter.query.get(language, "locals")
 	if not query then
 		return {}
 	end
@@ -164,7 +164,7 @@ local function get_scopes(buf, language, root)
 	for _, match in query:iter_matches(root, buf, start, stop + 1) do
 		for id, nodes in pairs(match) do
 			local capture = query.captures[id]
-			if capture == 'local.scope' then
+			if capture == "local.scope" then
 				for _, node in ipairs(nodes) do
 					result[#result + 1] = node
 				end
@@ -246,7 +246,7 @@ function M.scope_incremental()
 		while result and not vim.tbl_contains(scopes, result) do
 			result = result:parent()
 		end
-		assert(result ~= node, 'infinite loop')
+		assert(result ~= node, "infinite loop")
 		return result
 	end)
 end
@@ -264,22 +264,22 @@ end
 ---@param opts? { init?: string, increment?: string, scope?: string, decrement?: string }
 function M.setup(opts)
 	opts = opts or {}
-	local init = opts.init or 'gnn'
-	local increment = opts.increment or 'grn'
-	local scope = opts.scope or 'grc'
-	local decrement = opts.decrement or 'grm'
+	local init = opts.init or "gnn"
+	local increment = opts.increment or "grn"
+	local scope = opts.scope or "grc"
+	local decrement = opts.decrement or "grm"
 
 	if init then
-		vim.keymap.set('n', init, M.init_selection, { desc = 'Start incremental selection' })
+		vim.keymap.set("n", init, M.init_selection, { desc = "Start incremental selection" })
 	end
 	if increment then
-		vim.keymap.set('x', increment, M.node_incremental, { desc = 'Expand selection to parent node' })
+		vim.keymap.set("x", increment, M.node_incremental, { desc = "Expand selection to parent node" })
 	end
 	if scope then
-		vim.keymap.set('x', scope, M.scope_incremental, { desc = 'Expand selection to scope' })
+		vim.keymap.set("x", scope, M.scope_incremental, { desc = "Expand selection to scope" })
 	end
 	if decrement then
-		vim.keymap.set('x', decrement, M.node_decremental, { desc = 'Shrink selection' })
+		vim.keymap.set("x", decrement, M.node_decremental, { desc = "Shrink selection" })
 	end
 end
 
