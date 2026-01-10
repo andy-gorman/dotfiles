@@ -12,44 +12,50 @@ esac
 # PATH
 ####################################################
 
-export PATH="${HOME}/bin:${HOME}/Library/Python/3.8/bin:${PATH}":${GOPATH}/bin
-eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="${HOME}/bin:${PATH}"
+
+# Initialize Homebrew (check both Apple Silicon and Intel locations)
+for brew_path in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    if [[ -x "$brew_path" ]]; then
+        eval "$($brew_path shellenv)"
+        break
+    fi
+done
+unset brew_path
+
+# bun - JavaScript runtime and package manager
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 ####################################################
 # Environment variables
 ####################################################
 
 # vim default editor
-export EDITOR=/opt/homebrew/bin/nvim
+export EDITOR=nvim
 
 # Larger bash history (allow 32^3 entries; default is 500)
-export HISTSIZE=50000000;
-export HISTFILESIZE=$HISTSIZE;
-export HISTCONTROL=ignoredups;
+export HISTSIZE=50000000
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups
 # Make some commands not show up in history
-export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:* --help:* -h:pony:pony add *:pony update *:pony save *:pony ls:pony ls *";
-# Prefer US Engilsh and use UTF-8 export LANG="en_US.UTF-8";
-export LC_ALL="en_US.UTF-8";
+export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:* --help:* -h:pony:pony add *:pony update *:pony save *:pony ls:pony ls *"
+# Prefer US English and use UTF-8
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
 
-# Don't clear the screen after quitting a manual page
-export MANPAGE="less -x";
+# Use bat for syntax-highlighted man pages, fallback to less
+if command -v bat &> /dev/null; then
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+else
+    export MANPAGER="less -x"
+fi
 
-# Git Duet
-export GIT_DUET_CO_AUTHORED_BY=1
-export GIT_DUET_GLOBAL=true
-
-# Stuff for go
-export GOPATH=/usr/local/go/bin
-
-# Silence the zsh warning on os x
+# Silence the zsh deprecation warning on macOS
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# I think Husky is annnoying!
-export HUSKY=0
-#
 # Ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
-
 
 # Node Options
 export NODE_OPTIONS="--max_old_space_size=8192 $NODE_OPTIONS"
@@ -78,7 +84,7 @@ function tmux() {
 
 	# Run a .tmux file, if we see one
 	# TODO: Probably make this more secure
-	if [ -x .tmux ]; then
+	if [[ -x .tmux ]]; then
 		./.tmux
 		return
 	fi
@@ -101,11 +107,14 @@ fi
 # Completions
 ####################################################
 
+# Load bash-completion (includes git, ssh, and many other completions)
 # shellcheck disable=SC1091
-source "$HOME/.git-completion.bash"
+if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+    source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+fi
 
 ####################################################
-# Shell options. Maybe split into own file?
+# Shell options 
 ####################################################
 
 # Check the window size after each command and, if necessary, update 
@@ -127,43 +136,18 @@ shopt -s autocd
 # Recursive globbing, e.g. `echo **/*.txt`
 shopt -s globstar
 
-# Add tab completion for SSH hostnames based on ~/.ssh/config
-# ignoring wildcards
-[[ -e "$HOME/.ssh/config" ]] && complete -o "default" \
-    -o "nospace" \
-    -W "$(grep "^Host" ~/.ssh/config | \
-    grep -v "[?*]" | cut -d " " -f2 | \
-    tr ' ' '\n')" scp sftp ssh
-
-# Make less more friendly for non-text input files, see lesspipe(1)
-export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
-
 # Let's be normal
 set -o emacs
 
-# Tinted Shell
-export TINTED_SHELL_ENABLE_BASE24_VARS=1
-# shellcheck disable=SC1091
-source "$HOME/.config/base16-shell/scripts/base16-nord.sh"
+####################################################
+# Tool Initialization
+####################################################
 
-
-## NVM
-export NVM_DIR="$HOME/.nvm"
-# shellcheck disable=SC1091
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-# shellcheck disable=SC1091
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-GPG_TTY=$(tty) # Make sure GPG knows where to read input from
-export GPG_TTY
-
-export VOLTA_FEATURE_PNPM=1
-
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-
-eval "$(direnv hook bash)"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# Source all tool initialization files from .bashrc.d/
+# Files are loaded in alphabetical order: direnv, nodejs, security, themes
+if [[ -d "$HOME/.bashrc.d" ]]; then
+    for file in "$HOME/.bashrc.d"/*.bash; do
+        [[ -r "$file" ]] && source "$file"
+    done
+    unset file
+fi
