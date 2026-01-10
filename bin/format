@@ -13,11 +13,17 @@ stylua --allow-hidden .
 echo "Running shellcheck..."
 # Find all bash scripts (*.sh files and files with bash shebang) excluding submodules
 scripts=()
+
+# Get all *.sh files
+mapfile -t sh_files < <(git ls-files '*.sh')
+scripts+=("${sh_files[@]}")
+
+# Check bin/ and aspects/*/bin/ for extensionless bash scripts
 while IFS= read -r file; do
-	if [[ "$file" == *.sh ]] || [[ "$(head -n1 "$file" 2>/dev/null)" == "#!/usr/bin/env bash" ]]; then
+	if [[ "$(head -n1 "$file" 2>/dev/null)" == "#!/usr/bin/env bash" ]]; then
 		scripts+=("$file")
 	fi
-done < <(git ls-files)
+done < <(git ls-files 'bin/*' 'aspects/*/bin/*')
 
 if [[ ${#scripts[@]} -gt 0 ]]; then
 	shellcheck "${scripts[@]}"
