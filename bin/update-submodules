@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Author: Andy Gorman
+# shellcheck disable=SC2154  # name, toplevel, sm_path provided by git submodule foreach
+
+set -e
+
+update_submodule() {
+	set -e
+	echo "==> Updating submodule: $name"
+
+	BRANCH=$(git config -f "$toplevel"/.gitmodules submodule."$name".branch)
+	if [[ -z "$BRANCH" ]]; then
+		echo "Skipping $name: no branch configured"
+		return
+	fi
+
+	echo "Fetching updates for branch: $BRANCH"
+	git remote update --prune
+	git checkout "$BRANCH"
+	git pull --recurse-submodules
+
+	if [[ -d "doc" ]]; then
+		echo "Generating helptags..."
+		nvim --headless -u NONE -c "helptags doc" -c q
+	fi
+
+	if [[ $sm_path =~ aspects/nvim/.config/nvim/pack/plugins/start/command-t ]]; then
+		echo "Building command-t..."
+		if [[ ! -d "lua/wincent/commandt/lib" ]]; then
+			echo "ERROR: command-t build directory not found: lua/wincent/commandt/lib" >&2
+			return 1
+		fi
+		cd lua/wincent/commandt/lib
+		if ! make; then
+			echo "ERROR: command-t build failed" >&2
+			return 1
+		fi
+		echo "command-t build completed successfully"
+	fi
+}
+
+export -f update_submodule
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+git submodule foreach 'bash -c update_submodule'

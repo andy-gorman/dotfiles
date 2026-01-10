@@ -25,6 +25,8 @@
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/tinted-nvim"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/tinted-nvim
 	url = git@github.com:tinted-theming/tinted-nvim.git
+	branch = main
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-treesitter"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-treesitter
 	url = git@github.com:nvim-treesitter/nvim-treesitter.git
+	branch = main
