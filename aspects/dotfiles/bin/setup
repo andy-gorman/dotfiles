@@ -7,8 +7,8 @@ pushd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null
 ln -sf "$(pwd)/files/base16-shell" "${HOME}/.config/"
 echo -e "Creating symlink for dotfiles\n"
 
-# symlink all the dotfiles
-mapfile -d '' -t files < <(find "$(pwd)/files" -name ".*" -not -name ".gitignore" -not -name ".swp" -print0)
+# symlink all the dotfiles (including .bashrc.d directory)
+mapfile -d '' -t files < <(find "$(pwd)/files" -maxdepth 1 -name ".*" -not -name ".gitignore" -not -name ".swp" -print0)
 for f in "${files[@]}"; do
 	ln -sf "$f" "$HOME"
 done
