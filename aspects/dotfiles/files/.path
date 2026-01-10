@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-export PATH="${HOME}/bin:${HOME}/Library/Python/3.8/bin:${PATH}":${GOPATH}/bin
-eval "$(/opt/homebrew/bin/brew shellenv)"
