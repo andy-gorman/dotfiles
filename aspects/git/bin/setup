@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 # Author: Andy Gorman
 
-pushd $(dirname "${BASH_SOURCE[0]}")/..
+set -e 
+
+pushd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 echo -e "Creating symlink for git config files\n"
 
 # symlink all the dotfiles
-ln -sf "$(pwd)/files/.gitconfig" $HOME
-ln -sf "$(pwd)/files/.global_gitignore" $HOME
+ln -sf "$(pwd)/files/.gitconfig" "$HOME"
+ln -sf "$(pwd)/files/.global_gitignore" "$HOME"
 
 echo -e "Symlinks Created \n"
 popd

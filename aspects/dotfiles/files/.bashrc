@@ -7,9 +7,10 @@ case $- in
     *i*) ;;
     *) return;;
 esac
-# Load 
+# Load
 for file in ~/.{bash_prompt,aliases,auto-completions,exports,functions,path,workrc,tools}; do
     if [[ -r "$file" ]] && [[ -f "$file" ]]; then
+        # shellcheck disable=SC1090
         source "$file"
     fi
 done
@@ -53,17 +54,22 @@ export LESSOPEN="|/usr/local/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
 set -o emacs
 
 # Tinted Shell
-TINTED_SHELL_ENABLE_BASE24_VARS=1
-source $HOME/.config/base16-shell/scripts/base16-nord.sh
+export TINTED_SHELL_ENABLE_BASE24_VARS=1
+# shellcheck disable=SC1091
+source "$HOME/.config/base16-shell/scripts/base16-nord.sh"
 
 
 ## NVM
 export NVM_DIR="$HOME/.nvm"
+# shellcheck disable=SC1091
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# shellcheck disable=SC1091
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+1
 
+GPG_TTY=$(tty) # Make sure GPG knows where to read input from
+export GPG_TTY
 
-export GPG_TTY=$(tty) # Make sure GPG knows where to read input from
 export VOLTA_FEATURE_PNPM=1
 
 export VOLTA_HOME="$HOME/.volta"

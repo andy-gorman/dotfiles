@@ -1,13 +1,16 @@
 #!/usr/bin/env bash
 # Author: Andy Gorman
 
-pushd $(dirname "${BASH_SOURCE[0]}")/.. &> /dev/null
+set -e
+
+pushd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null
 ln -sf "$(pwd)/files/base16-shell" "${HOME}/.config/"
 echo -e "Creating symlink for dotfiles\n"
 
 # symlink all the dotfiles
-for f in $(find "$(pwd)/files" -name ".*" -not -name ".gitignore" -not -name ".swp") ; do
-	ln -sf "$f" $HOME
+mapfile -d '' -t files < <(find "$(pwd)/files" -name ".*" -not -name ".gitignore" -not -name ".swp" -print0)
+for f in "${files[@]}"; do
+	ln -sf "$f" "$HOME"
 done
 
 # Some specific plugins

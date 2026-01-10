@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-source $HOME/.git-completion.bash
+set -e
+# shellcheck disable=SC1091
+source "$HOME/.git-completion.bash"

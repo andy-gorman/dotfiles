@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Author: Andy Gorman
 
-cd $(dirname "${BASH_SOURCE[0]}")/..
+set -e 
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
 ln -sf "$(pwd)/files/gpg.conf" "${HOME}/.gnupg/"
 ln -sf "$(pwd)/files/gpg-agent.conf" "${HOME}/.gnupg/"

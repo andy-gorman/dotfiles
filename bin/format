@@ -7,4 +7,21 @@ REPO_ROOT="${BASH_SOURCE%/*}/.."
 
 cd "${REPO_ROOT}"
 
+echo "Running stylua..."
 stylua --allow-hidden .
+
+echo "Running shellcheck..."
+# Find all bash scripts (*.sh files and files with bash shebang) excluding submodules
+scripts=()
+while IFS= read -r file; do
+	if [[ "$file" == *.sh ]] || [[ "$(head -n1 "$file" 2>/dev/null)" == "#!/usr/bin/env bash" ]]; then
+		scripts+=("$file")
+	fi
+done < <(git ls-files)
+
+if [[ ${#scripts[@]} -gt 0 ]]; then
+	shellcheck "${scripts[@]}"
+	echo "Shellcheck passed!"
+else
+	echo "No bash scripts found"
+fi
