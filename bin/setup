@@ -3,4 +3,20 @@
 
 set -e
 
-echo "Needs implementation"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_ROOT="$(dirname "$SCRIPT_DIR")"
+
+echo "Setting up dotfiles..."
+echo ""
+
+# Run aspect setup scripts
+for aspect_setup in "$DOTFILES_ROOT"/aspects/*/bin/setup; do
+    if [[ -x "$aspect_setup" ]]; then
+        aspect_name=$(basename "$(dirname "$(dirname "$aspect_setup")")")
+        echo "=== Setting up $aspect_name ==="
+        "$aspect_setup"
+        echo ""
+    fi
+done
+
+echo "Setup complete!"
