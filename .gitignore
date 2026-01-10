@@ -1,3 +1,4 @@
 .vscode/extensions
 .projectrc
 .idea/
+.claude/settings.local.json
