@@ -20,14 +20,15 @@ function tmux() {
 
     if ! grep -q "$DIGEST" ~/.tmux.digests 2> /dev/null; then
       cat .tmux
-      read -n 1 -r \
-        'REPLY?Trust (and run) this .tmux file? (t = trust, otherwise = skip) '
+      read -n 1 -r -p 'Trust (and run) this .tmux file? (t = trust, otherwise = skip) ' REPLY
       echo
       if [[ $REPLY =~ ^[Tt]$ ]]; then
         echo "$DIGEST" >> ~/.tmux.digests
         ./.tmux
         return
       fi
+      # User declined to trust, don't run anything
+      return
     else
       ./.tmux
       return
@@ -36,5 +37,5 @@ function tmux() {
 
 	# By default, attach to an existing session or create one, named on the current directory
 	SESSION_NAME=$(basename "$(pwd)")
-	tmux new -A -s "$SESSION_NAME"
+	command tmux new -A -s "$SESSION_NAME"
 }
