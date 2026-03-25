@@ -26,7 +26,6 @@
 [user]
 	name = Andy Gorman
 	email = hi@gorman.zone
-	signingKey = 0x7F9669E92E1765D6
 [push]
   default = current
 [pull]
@@ -40,8 +39,6 @@
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [tag]
 	forceSignAnnotated = true
-[commit]
-	gpgSign = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

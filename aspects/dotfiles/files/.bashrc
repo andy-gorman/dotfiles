@@ -12,7 +12,7 @@ esac
 # PATH
 ####################################################
 
-export PATH="${HOME}/bin:${PATH}"
+export PATH="${HOME}/bin:$HOME/.local/bin:${PATH}"
 
 # Initialize Homebrew (check both Apple Silicon and Intel locations)
 for brew_path in /opt/homebrew/bin/brew /usr/local/bin/brew; do
