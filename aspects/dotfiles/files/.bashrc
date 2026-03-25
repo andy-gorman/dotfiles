@@ -114,7 +114,7 @@ set -o emacs
 ####################################################
 
 # Source all tool initialization files from .bashrc.d/
-# Files are loaded in alphabetical order: direnv, nodejs, security, starship, themes, tmux
+# Files are loaded in alphabetical order: direnv, nodejs, security, starship, themes, zellij
 if [[ -d "$HOME/.bashrc.d" ]]; then
     for file in "$HOME/.bashrc.d"/*.bash; do
         [[ -r "$file" ]] && source "$file"

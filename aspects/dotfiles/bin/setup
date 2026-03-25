@@ -7,14 +7,21 @@ pushd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null
 ln -sf "$(pwd)/files/base16-shell" "${HOME}/.config/"
 echo -e "Creating symlink for dotfiles\n"
 
-# symlink all the dotfiles (including .bashrc.d directory)
-mapfile -d '' -t files < <(find "$(pwd)/files" -maxdepth 1 -name ".*" -not -name ".gitignore" -not -name ".swp" -print0)
+# symlink all the dotfiles (excluding .bashrc.d which is handled per-file below)
+mapfile -d '' -t files < <(find "$(pwd)/files" -maxdepth 1 -name ".*" -not -name ".gitignore" -not -name ".swp" -not -name ".bashrc.d" -print0)
 for f in "${files[@]}"; do
 	ln -sf "$f" "$HOME"
 done
 
-# Some specific plugins
-ln -sf "$(pwd)/files/base16-tmux" "${HOME}/.tmux/plugins"
+# Symlink individual .bashrc.d files so multiple aspects can contribute their own.
+# Remove old directory symlink if present and replace with a real directory.
+if [[ -L "${HOME}/.bashrc.d" ]]; then
+	rm "${HOME}/.bashrc.d"
+fi
+mkdir -p "${HOME}/.bashrc.d"
+for f in "$(pwd)/files/.bashrc.d/"*.bash; do
+	ln -sf "$f" "${HOME}/.bashrc.d/"
+done
 
 echo -e "Symlinks Created \n"
 popd &> /dev/null

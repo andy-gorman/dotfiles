@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Author: Andy Gorman
+
+set -e
+
+pushd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null
+
+echo -e "Creating symlinks for tmux\n"
+
+# Symlink .tmux.conf
+ln -sf "$(pwd)/files/.tmux.conf" "${HOME}/.tmux.conf"
+
+# Ensure ~/.tmux directories exist and symlink contents
+mkdir -p "${HOME}/.tmux/plugins"
+ln -sf "$(pwd)/.tmux/hooks.conf" "${HOME}/.tmux/hooks.conf"
+ln -sf "$(pwd)/.tmux/plugins/base16-tmux" "${HOME}/.tmux/plugins/base16-tmux"
+
+# Symlink tmux.bash into ~/.bashrc.d
+# Note: ~/.bashrc.d must be a real directory (not a symlink) for this to work.
+# The dotfiles aspect setup handles that transition.
+mkdir -p "${HOME}/.bashrc.d"
+ln -sf "$(pwd)/files/.bashrc.d/tmux.bash" "${HOME}/.bashrc.d/tmux.bash"
+
+echo -e "Symlinks Created\n"
+
+popd &> /dev/null
