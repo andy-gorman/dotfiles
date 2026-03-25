@@ -17,6 +17,7 @@
     update-submodules = submodule update --recursive --remote
 	gone = !git branch -vv | grep ': gone]' | awk '{print $1}'
 	prune-local = !git fetch -p && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
+	delete-and-back = !git switch - && git branch -D @{-1}
 
 [branch]
 	autosetupmerge = always
@@ -26,7 +27,6 @@
 [user]
 	name = Andy Gorman
 	email = hi@gorman.zone
-	signingKey = 0x7F9669E92E1765D6
 [push]
   default = current
 [pull]
@@ -41,10 +41,15 @@
 [tag]
 	forceSignAnnotated = true
 [commit]
-	gpgSign = true
+	gpgsign = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
 
+[gpg]
+	format = ssh
+
+[include]
+	path = ~/.gitconfig.local

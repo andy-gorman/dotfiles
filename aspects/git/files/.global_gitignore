@@ -1,3 +1,4 @@
 .rgignore
 .nvimrc
 .DS_Store
+.worktrees/

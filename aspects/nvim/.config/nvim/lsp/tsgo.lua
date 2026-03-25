@@ -1,3 +1,4 @@
+-- Disabled for auditboard-frontend (uses glint instead)
 return {
 	cmd = { "bunx", "@typescript/native-preview", "--lsp", "--stdio" },
 	filetypes = {
@@ -8,7 +9,16 @@ return {
 		"typescriptreact",
 		"typescript.tsx",
 	},
-	root_markers = { "tsconfig.base.json", "tsconfig.json", "jsconfig.json", "package.json" },
+	root_dir = function(bufnr, on_dir)
+		-- Skip Ember projects (use glint instead)
+		if vim.fs.root(bufnr, { "ember-cli-build.js", ".ember-cli" }) then
+			return
+		end
+		local root = vim.fs.root(bufnr, { "tsconfig.base.json", "tsconfig.json", "jsconfig.json", "package.json" })
+		if root then
+			on_dir(root)
+		end
+	end,
 	on_attach = function(client, bufnr)
 		-- Format on save: LSP first, then Prettier
 		vim.api.nvim_create_autocmd("BufWritePre", {

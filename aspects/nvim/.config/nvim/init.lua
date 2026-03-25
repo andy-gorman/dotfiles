@@ -62,6 +62,17 @@ vim.keymap.set("n", "<Leader>r", function()
 end)
 vim.keymap.set("n", "<Leader>n", ":noh<CR>")
 vim.keymap.set("n", "<Leader>w", ":w<CR>")
+-- Copy filename to clipboard
+vim.keymap.set("n", "<Leader>cf", function()
+	local path = vim.fn.expand("%")
+	vim.fn.setreg("+", path)
+	print("Copied: " .. path)
+end, { desc = "Copy relative filepath" })
+vim.keymap.set("n", "<Leader>cF", function()
+	local path = vim.fn.expand("%:p")
+	vim.fn.setreg("+", path)
+	print("Copied: " .. path)
+end, { desc = "Copy absolute filepath" })
 
 -- AutoCommands
 vim.api.nvim_create_autocmd({ "FocusGained" }, { command = "checktime" })

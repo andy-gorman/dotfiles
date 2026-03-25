@@ -12,7 +12,10 @@ esac
 # PATH
 ####################################################
 
-export PATH="${HOME}/bin:${PATH}"
+export PATH="${HOME}/bin:${PATH}:$HOME/.local/bin"
+
+# Obsidian CLI
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
 
 # Initialize Homebrew (check both Apple Silicon and Intel locations)
 for brew_path in /opt/homebrew/bin/brew /usr/local/bin/brew; do
