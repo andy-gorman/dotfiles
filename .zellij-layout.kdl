@@ -1,0 +1,31 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="project" cwd="." {
+        pane
+    }
+
+    tab name="neovim" cwd="aspects/nvim/.config/nvim" {
+        pane split_direction="horizontal" {
+            pane size="50%" command="nvim"
+            pane size="50%" command="git" {
+                args "s"
+            }
+        }
+    }
+
+    tab name="dot" cwd="aspects/dotfiles" {
+        pane split_direction="horizontal" {
+            pane size="50%" command="nvim"
+            pane size="50%"
+        }
+    }
+}

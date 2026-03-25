@@ -12,7 +12,7 @@ esac
 # PATH
 ####################################################
 
-export PATH="${HOME}/bin:${PATH}:$HOME/.local/bin"
+export PATH="${HOME}/bin:$HOME/.local/bin:${PATH}"
 
 # Obsidian CLI
 export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
