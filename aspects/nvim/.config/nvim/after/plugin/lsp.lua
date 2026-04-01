@@ -9,13 +9,6 @@ end)
 
 vim.keymap.set("n", "<Leader>q", vim.diagnostic.setloclist)
 
-vim.api.nvim_create_user_command("LspRestart", function()
-	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-		vim.lsp.stop_client(client.id)
-	end
-	vim.cmd("edit")
-end, {})
-
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function()
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration)

@@ -12,7 +12,7 @@ esac
 # PATH
 ####################################################
 
-export PATH="${HOME}/bin:$HOME/.local/bin:${PATH}"
+export PATH="${HOME}/bin:$HOME/.local/bin:$HOME/.cargo/bin:${PATH}"
 
 # Obsidian CLI
 export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
@@ -117,6 +117,14 @@ set -o emacs
 # Files are loaded in alphabetical order: direnv, nodejs, security, starship, themes, zellij
 if [[ -d "$HOME/.bashrc.d" ]]; then
     for file in "$HOME/.bashrc.d"/*.bash; do
+        [[ -r "$file" ]] && source "$file"
+    done
+    unset file
+fi
+
+# Source work/company-specific configuration from .bashrc.work.d/
+if [[ -d "$HOME/.bashrc.work.d" ]]; then
+    for file in "$HOME/.bashrc.work.d"/*.bash; do
         [[ -r "$file" ]] && source "$file"
     done
     unset file
