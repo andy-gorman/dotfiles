@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# commit-msg hook: Appends Claude Code co-author trailer to commits
+# that don't already have one.
+#
+# Usage: Copy or symlink to .git/hooks/commit-msg
+
+COMMIT_MSG_FILE="$1"
+COAUTHOR="Co-Authored-By: Claude <noreply@anthropic.com>"
+
+if ! grep -qF "$COAUTHOR" "$COMMIT_MSG_FILE"; then
+  printf '\n%s\n' "$COAUTHOR" >> "$COMMIT_MSG_FILE"
+fi
