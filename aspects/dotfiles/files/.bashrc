@@ -60,6 +60,9 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # Ripgrep
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
+# Disable Husky git hooks
+export HUSKY=0
+
 # Node Options
 export NODE_OPTIONS="--max_old_space_size=8192 $NODE_OPTIONS"
 

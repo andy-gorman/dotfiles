@@ -18,6 +18,7 @@
 	gone = !git branch -vv | grep ': gone]' | awk '{print $1}'
 	prune-local = !git fetch -p && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
 	delete-and-back = !git switch - && git branch -D @{-1}
+	revert-files = "!f() { git diff \"${1:-develop}\" --name-only | fzf --multi | xargs git checkout \"${1:-develop}\" --; }; f"
 
 [branch]
 	autosetupmerge = always
