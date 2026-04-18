@@ -33,3 +33,4 @@
 [submodule "aspects/dotfiles/files/base16-tmux"]
 	path = aspects/dotfiles/files/base16-tmux
 	url = https://github.com/tinted-theming/tinted-tmux
+	branch = main
