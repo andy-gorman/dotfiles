@@ -25,6 +25,7 @@ brew "diff-so-fancy"
 # Search / navigation
 brew "bat"
 brew "fzf"
+brew "jq"
 brew "ripgrep"
 
 # Shell tooling
