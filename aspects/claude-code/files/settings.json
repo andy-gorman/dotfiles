@@ -17,6 +17,20 @@
     "atlassian@claude-plugins-official": true,
     "ed3d-extending-claude@ed3d-plugins": true
   },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
+    "ed3d-plugins": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/ed3dai/ed3d-plugins.git"
+      }
+    }
+  },
   "effortLevel": "high",
   "editorMode": "vim"
 }
