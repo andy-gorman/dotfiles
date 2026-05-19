@@ -1,16 +1,58 @@
 #!/usr/bin/env bash
 # Author: Andy Gorman
 
-set -e 
+set -e
 
 pushd "$(dirname "${BASH_SOURCE[0]}")/.."
 
 echo -e "Creating symlink for git config files\n"
 
-# symlink all the dotfiles
+# Symlink the shared git configs.
 ln -sf "$(pwd)/files/.gitconfig" "$HOME"
 ln -sf "$(pwd)/files/.global_gitignore" "$HOME"
 
-echo -e "Symlinks Created \n"
-popd
+# Seed ~/.gitconfig.local from the template if it doesn't already exist.
+# This file holds per-machine identity (signing key, optional email override)
+# and is NOT tracked in dotfiles, so we copy (not symlink) and let it diverge.
+LOCAL="${HOME}/.gitconfig.local"
+TEMPLATE="$(pwd)/files/.gitconfig.local.template"
 
+# Look for an existing SSH public key to drop into [user] signingkey.
+SIGNING_KEY=""
+SIGNING_KEY_SOURCE=""
+for candidate in \
+	"${HOME}/.ssh/id_ed25519.pub" \
+	"${HOME}/.ssh/id_ecdsa.pub" \
+	"${HOME}/.ssh/id_rsa.pub"
+do
+	if [[ -r "${candidate}" ]]; then
+		SIGNING_KEY="$(head -1 "${candidate}")"
+		SIGNING_KEY_SOURCE="${candidate}"
+		break
+	fi
+done
+
+# `|` is safe as the sed delimiter: SSH public keys are base64 (+ / =) plus
+# whitespace + a comment, none of which include `|`.
+if [[ ! -e "${LOCAL}" ]]; then
+	if [[ -n "${SIGNING_KEY}" ]]; then
+		sed "s|REPLACE_ME|${SIGNING_KEY}|" "${TEMPLATE}" > "${LOCAL}"
+		echo "Created ${LOCAL} with signing key from ${SIGNING_KEY_SOURCE}."
+	else
+		cp "${TEMPLATE}" "${LOCAL}"
+		echo "Created ${LOCAL}. No SSH public key found yet."
+		echo "After generating one (ssh-keygen -t ed25519), re-run bin/setup."
+	fi
+	chmod 644 "${LOCAL}"
+elif grep -q "REPLACE_ME" "${LOCAL}" && [[ -n "${SIGNING_KEY}" ]]; then
+	# In-place fill of an unhydrated template. Safe because we only replace
+	# the literal placeholder we wrote ourselves — any hand-edit drops it.
+	sed -i.bak "s|REPLACE_ME|${SIGNING_KEY}|" "${LOCAL}"
+	rm -f "${LOCAL}.bak"
+	echo "Filled REPLACE_ME in ${LOCAL} with signing key from ${SIGNING_KEY_SOURCE}."
+else
+	echo "${LOCAL} already exists; leaving it alone."
+fi
+
+echo -e "\nSymlinks Created\n"
+popd
