@@ -30,3 +30,6 @@
 	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-treesitter
 	url = git@github.com:nvim-treesitter/nvim-treesitter.git
 	branch = main
+[submodule "aspects/dotfiles/files/base16-tmux"]
+	path = aspects/dotfiles/files/base16-tmux
+	url = https://github.com/tinted-theming/tinted-tmux
