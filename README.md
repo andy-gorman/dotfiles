@@ -48,11 +48,13 @@ bin/
   update-submodules
 aspects/
   homebrew/          # Brewfile + brew bundle wrapper
-  claude-code/       # installs the Claude Code CLI from claude.ai/install.sh
+  claude-code/       # Claude Code CLI install + ~/.claude/{CLAUDE.md,settings.json} + plugin setup
   dotfiles/          # .bashrc, .bash_profile, .bashrc.d/*, .ripgreprc, base16-shell
-  git/               # .gitconfig, .global_gitignore, hooks
+  git/               # .gitconfig, .global_gitignore, .gitconfig.local template, hooks
   gnupg/             # gpg.conf, gpg-agent.conf
+  macos/             # `defaults write` for keyboard, finder, dock, screenshots, etc.
   nvim/              # ~/.config/nvim (submodule plugins under pack/)
+  ssh/               # ~/.ssh/config (multiplexing + keychain, includes ~/.ssh/config.local)
   tmux/              # .tmux.conf, plugins
 ```
 
