@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Author: Andy Gorman
+#
+# Installs Claude Code via the official native installer.
+# Not in Homebrew, so it lives in its own aspect.
+
+set -e
+
+if command -v claude &> /dev/null; then
+	echo "Claude Code already installed ($(claude --version 2>/dev/null || echo 'version unknown'))."
+	exit 0
+fi
+
+echo "Installing Claude Code..."
+curl -fsSL https://claude.ai/install.sh | bash
+echo "Claude Code installed."
