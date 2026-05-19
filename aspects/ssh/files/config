@@ -1,0 +1,36 @@
+# SSH client config (managed by dotfiles).
+#
+# Machine- or work-specific entries belong in ~/.ssh/config.local, which is
+# included first so its values win (ssh "first match" semantics).
+
+Include ~/.ssh/config.local
+
+# ----------------------------------------------------------------------
+# Common hosts
+# ----------------------------------------------------------------------
+
+Host github.com
+    User git
+    # Prefer ed25519 if available.
+    IdentitiesOnly no
+
+# ----------------------------------------------------------------------
+# Defaults applied to everything not matched above
+# ----------------------------------------------------------------------
+
+Host *
+    # macOS Keychain integration: store passphrases, auto-load on demand.
+    UseKeychain yes
+    AddKeysToAgent yes
+
+    # Keep idle connections alive (60s heartbeat, give up after 30 misses).
+    ServerAliveInterval 60
+    ServerAliveCountMax 30
+
+    # Reuse connections to the same host (faster repeated git pushes, etc.).
+    ControlMaster auto
+    ControlPath ~/.ssh/sockets/%r@%h:%p
+    ControlPersist 10m
+
+    # Prefer modern ciphers/MACs/kex.
+    HashKnownHosts yes
