@@ -21,7 +21,10 @@ update_submodule() {
 
 	if [[ -d "doc" ]]; then
 		echo "Generating helptags..."
-		nvim --headless -u NONE -c "helptags doc" -c q
+		# -i NONE disables ShaDa so headless invocation doesn't try to
+		# read/write ~/.local/state/nvim/shada/ (which may not exist yet
+		# on a fresh machine).
+		nvim --headless -u NONE -i NONE -c "helptags doc" -c q
 	fi
 
 	if [[ $sm_path =~ aspects/nvim/.config/nvim/pack/plugins/start/command-t ]]; then
