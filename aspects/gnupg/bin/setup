@@ -1,7 +1,19 @@
 #!/usr/bin/env bash
 # Author: Andy Gorman
 
-set -e 
+set -e
+
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+# ~/.gnupg/ must exist as a real 0700 directory before we drop links into it.
+# On a fresh machine the dir doesn't exist until gpg has been run once; without
+# this guard `ln -sf src ~/.gnupg/` would turn ~/.gnupg into a symlink to src.
+mkdir -p "${HOME}/.gnupg"
+chmod 700 "${HOME}/.gnupg"
+
+echo -e "Creating symlinks for gpg config files\n"
+
 ln -sf "$(pwd)/files/gpg.conf" "${HOME}/.gnupg/"
 ln -sf "$(pwd)/files/gpg-agent.conf" "${HOME}/.gnupg/"
+
+echo -e "Symlinks Created\n"
