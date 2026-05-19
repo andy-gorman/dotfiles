@@ -1,0 +1,22 @@
+{
+  "model": "opus[1m]",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "afplay /System/Library/Sounds/Glass.aiff & osascript -e 'display notification \"Claude is waiting for your input\" with title \"Claude Code\"'"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "ed3d-plan-and-execute@ed3d-plugins": true,
+    "atlassian@claude-plugins-official": true,
+    "ed3d-extending-claude@ed3d-plugins": true
+  },
+  "effortLevel": "high",
+  "editorMode": "vim"
+}

@@ -1,16 +1,97 @@
 #!/usr/bin/env bash
 # Author: Andy Gorman
 #
-# Installs Claude Code via the official native installer.
-# Not in Homebrew, so it lives in its own aspect.
+# Installs the Claude Code CLI, symlinks ~/.claude/{CLAUDE.md,settings.json,...}
+# from this aspect, adds marketplaces, and installs enabled plugins.
+#
+# Idempotent: re-running is safe at any phase.
 
 set -e
 
+ASPECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+CLAUDE_DIR="${HOME}/.claude"
+
+####################################################
+# 1. Install the Claude Code CLI (if missing)
+####################################################
+
+# The official installer typically drops the binary at ~/.local/bin/claude.
+# Add that to PATH up-front so post-install checks succeed in this shell.
+export PATH="${HOME}/.local/bin:${PATH}"
+
 if command -v claude &> /dev/null; then
 	echo "Claude Code already installed ($(claude --version 2>/dev/null || echo 'version unknown'))."
+else
+	echo "Installing Claude Code..."
+	curl -fsSL https://claude.ai/install.sh | bash
+fi
+
+####################################################
+# 2. Symlink config files into ~/.claude/
+####################################################
+
+mkdir -p "${CLAUDE_DIR}" "${CLAUDE_DIR}/plugins"
+
+# Symlink a file into ~/.claude/, backing up any existing real file first.
+link_into_claude() {
+	local src="$1"
+	local dest="$2"
+
+	if [[ -e "${dest}" && ! -L "${dest}" ]]; then
+		local backup
+		backup="${dest}.backup.$(date +%Y%m%d%H%M%S)"
+		mv "${dest}" "${backup}"
+		echo "Backed up ${dest} -> ${backup}."
+	fi
+	ln -sf "${src}" "${dest}"
+}
+
+link_into_claude "${ASPECT_DIR}/files/CLAUDE.md" "${CLAUDE_DIR}/CLAUDE.md"
+link_into_claude "${ASPECT_DIR}/files/settings.json" "${CLAUDE_DIR}/settings.json"
+
+# Optional customization dirs (commands, agents, skills, hooks). Empty today
+# but symlinked-if-present so they Just Work once you add them.
+for subdir in commands agents skills hooks; do
+	if [[ -d "${ASPECT_DIR}/files/${subdir}" ]]; then
+		link_into_claude "${ASPECT_DIR}/files/${subdir}" "${CLAUDE_DIR}/${subdir}"
+	fi
+done
+
+####################################################
+# 3. Plugin marketplaces + installs
+####################################################
+
+if ! command -v claude &> /dev/null; then
+	echo "claude CLI not on PATH after install. Skipping marketplace/plugin setup."
+	echo "Open a new shell and re-run this script."
 	exit 0
 fi
 
-echo "Installing Claude Code..."
-curl -fsSL https://claude.ai/install.sh | bash
-echo "Claude Code installed."
+if ! command -v jq &> /dev/null; then
+	echo "jq is required for plugin setup. Run brew bundle (or brew install jq) and re-run." >&2
+	exit 1
+fi
+
+MARKETPLACES_FILE="${ASPECT_DIR}/files/plugins/marketplaces.json"
+if [[ -r "${MARKETPLACES_FILE}" ]]; then
+	echo "Adding plugin marketplaces..."
+	while IFS=$'\t' read -r name source; do
+		echo "  ${name} <- ${source}"
+		claude plugin marketplace add "${source}" || true
+	done < <(jq -r 'to_entries[] | "\(.key)\t\(.value.source)"' "${MARKETPLACES_FILE}")
+fi
+
+# Drive plugin installs from settings.json `enabledPlugins`. settings.json is
+# the source of truth (it's what Claude Code itself reads), so enabling /
+# disabling via /plugin auto-updates this aspect's tracked file via the symlink.
+SETTINGS_FILE="${ASPECT_DIR}/files/settings.json"
+if [[ -r "${SETTINGS_FILE}" ]]; then
+	echo "Installing enabled plugins..."
+	while IFS= read -r plugin; do
+		[[ -z "${plugin}" ]] && continue
+		echo "  ${plugin}"
+		claude plugin install --scope user "${plugin}" || true
+	done < <(jq -r '.enabledPlugins // {} | keys[]' "${SETTINGS_FILE}")
+fi
+
+echo "Claude Code setup complete."
