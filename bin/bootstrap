@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+# Author: Andy Gorman
+#
+# One-shot bootstrap for a fresh macOS install.
+#
+# Phases:
+#   1. Xcode Command Line Tools
+#   2. Homebrew
+#   3. brew bundle (so modern bash + other tools exist before aspect setups run)
+#   4. Promote brew bash to login shell (adds to /etc/shells, chsh)
+#   5. bin/setup (runs every aspect)
+#
+# Safe to re-run; each phase is idempotent.
+
+set -e
+
+if [[ "$(uname -s)" != "Darwin" ]]; then
+	echo "bootstrap currently only supports macOS." >&2
+	exit 1
+fi
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_ROOT="$(dirname "$SCRIPT_DIR")"
+
+echo "=== Xcode Command Line Tools ==="
+if ! xcode-select -p &> /dev/null; then
+	echo "Installing Xcode CLT (a GUI prompt will appear; rerun bootstrap when it finishes)..."
+	xcode-select --install
+	exit 0
+fi
+echo "Xcode CLT present."
+echo ""
+
+echo "=== Homebrew ==="
+if ! command -v brew &> /dev/null; then
+	echo "Installing Homebrew..."
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	# Make brew available in this shell for the rest of bootstrap.
+	for brew_path in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+		if [[ -x "$brew_path" ]]; then
+			eval "$($brew_path shellenv)"
+			break
+		fi
+	done
+fi
+echo "Homebrew present ($(brew --version | head -1))."
+echo ""
+
+# IMPORTANT: brew bundle must run before bin/setup. Several aspect setup scripts
+# rely on bash 4+ features (e.g. `mapfile -d ''`), which the macOS-shipped
+# /bin/bash (3.2) does not support. Installing brew bash first ensures the
+# `#!/usr/bin/env bash` shebangs in aspect scripts resolve to a modern bash via
+# the homebrew-prefixed PATH that `brew shellenv` set up above.
+echo "=== Brew bundle ==="
+"${DOTFILES_ROOT}/aspects/homebrew/bin/setup"
+echo ""
+
+echo "=== Default shell ==="
+BREW_BASH="$(brew --prefix)/bin/bash"
+if [[ ! -x "$BREW_BASH" ]]; then
+	echo "Expected modern bash at $BREW_BASH but did not find it. Skipping shell change." >&2
+else
+	if ! grep -qxF "$BREW_BASH" /etc/shells; then
+		echo "Adding $BREW_BASH to /etc/shells (sudo required)..."
+		echo "$BREW_BASH" | sudo tee -a /etc/shells > /dev/null
+	else
+		echo "$BREW_BASH already listed in /etc/shells."
+	fi
+
+	current_shell="$(dscl . -read "/Users/$USER" UserShell 2>/dev/null | awk '{print $2}')"
+	if [[ "$current_shell" != "$BREW_BASH" ]]; then
+		echo "Changing login shell from ${current_shell:-unknown} to $BREW_BASH..."
+		chsh -s "$BREW_BASH"
+	else
+		echo "Login shell already $BREW_BASH."
+	fi
+fi
+echo ""
+
+echo "=== Running aspect setup ==="
+"${DOTFILES_ROOT}/bin/setup"
+
+echo ""
+echo "Bootstrap complete. Open a new login shell to pick up the modern bash + full environment."
