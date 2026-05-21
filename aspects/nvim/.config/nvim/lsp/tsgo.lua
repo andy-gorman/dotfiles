@@ -10,6 +10,10 @@ return {
 		"typescript.tsx",
 	},
 	root_dir = function(bufnr, on_dir)
+		-- Per-repo opt-out: drop a `.no-tsgo` file at the repo root
+		if vim.fs.root(bufnr, { ".no-tsgo" }) then
+			return
+		end
 		-- Skip Ember projects (use glint instead)
 		if vim.fs.root(bufnr, { "ember-cli-build.js", ".ember-cli" }) then
 			return

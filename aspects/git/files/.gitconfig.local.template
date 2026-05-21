@@ -1,0 +1,33 @@
+# Per-machine git overrides. Included by ~/.gitconfig.
+# Edit freely — this file is not tracked in dotfiles.
+
+[user]
+	# SSH commit signing key. Required because the tracked .gitconfig sets
+	# commit.gpgsign = true and gpg.format = ssh.
+	#
+	# Get the public key with one of:
+	#   ssh-add -L | head -1
+	#   cat ~/.ssh/id_ed25519.pub
+	#
+	# Inline form (paste the full "ssh-ed25519 AAAA... user@host" line):
+	#   signingkey = ssh-ed25519 AAAA...
+	#
+	# Or point at the public key file (more portable across machines):
+	#   signingkey = ~/.ssh/id_ed25519.pub
+	signingkey = REPLACE_ME
+
+	# Per-machine name/email override (optional). Uncomment if this machine
+	# should commit under a different identity than ~/.gitconfig declares.
+	# name = ...
+	# email = ...
+
+# ----------------------------------------------------------------------
+# Per-directory identity (optional)
+# ----------------------------------------------------------------------
+# Use a separate config for repos under a specific path — e.g. work repos
+# get a work email + signing key without touching personal ones.
+#
+# [includeIf "gitdir:~/Development/auditboard/"]
+#	path = ~/.gitconfig.work
+#
+# Then create ~/.gitconfig.work with [user] email = work@example.com etc.

@@ -1,0 +1,49 @@
+# Homebrew bundle for new-machine setup.
+# Run via `aspects/homebrew/bin/setup` or `brew bundle --file=aspects/homebrew/Brewfile`.
+
+# Taps
+tap "oven-sh/bun"
+
+# Shell + core
+brew "bash"
+brew "bash-completion@2"
+brew "coreutils"
+
+# Editors / multiplexers
+brew "neovim"
+brew "tmux"
+brew "zellij"
+
+# Prompt + theming
+brew "starship"
+
+# Git + diff
+brew "git"
+brew "git-lfs"
+brew "diff-so-fancy"
+
+# Search / navigation
+brew "bat"
+brew "fzf"
+brew "jq"
+brew "ripgrep"
+
+# Shell tooling
+brew "direnv"
+brew "shellcheck"
+brew "stylua"
+
+# JS runtimes / managers
+brew "volta"
+brew "oven-sh/bun/bun"
+
+# GPG (commit signing)
+brew "gnupg"
+brew "pinentry-mac"
+
+# Fonts (Nerd Font for starship glyphs + nvim icons)
+cask "font-jetbrains-mono-nerd-font"
+
+# GUI apps
+cask "docker"
+cask "docker-desktop"

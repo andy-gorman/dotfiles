@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 # Author: Andy Gorman
 
-set -e 
+set -e
 
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+# ~/.config/ must exist as a real directory before we drop links into it,
+# otherwise `ln -sf src ~/.config/` turns ~/.config itself into a symlink.
+mkdir -p "${HOME}/.config"
+
 ln -sf "$(pwd)/.config/nvim" "${HOME}/.config/"

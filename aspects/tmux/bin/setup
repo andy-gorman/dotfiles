@@ -12,8 +12,8 @@ ln -sf "$(pwd)/files/.tmux.conf" "${HOME}/.tmux.conf"
 
 # Ensure ~/.tmux directories exist and symlink contents
 mkdir -p "${HOME}/.tmux/plugins"
-ln -sf "$(pwd)/.tmux/hooks.conf" "${HOME}/.tmux/hooks.conf"
-ln -sf "$(pwd)/.tmux/plugins/base16-tmux" "${HOME}/.tmux/plugins/base16-tmux"
+ln -sf "$(pwd)/files/.tmux/hooks.conf" "${HOME}/.tmux/hooks.conf"
+ln -sf "$(pwd)/files/.tmux/plugins/tinted-tmux" "${HOME}/.tmux/plugins/tinted-tmux"
 
 # Symlink tmux.bash into ~/.bashrc.d
 # Note: ~/.bashrc.d must be a real directory (not a symlink) for this to work.

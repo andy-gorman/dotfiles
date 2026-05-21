@@ -4,7 +4,12 @@
 set -e
 
 pushd "$(dirname "${BASH_SOURCE[0]}")/.." &> /dev/null
-ln -sf "$(pwd)/files/base16-shell" "${HOME}/.config/"
+
+# ~/.config/ must exist as a real directory before we drop links into it,
+# otherwise `ln -sf src ~/.config/` turns ~/.config itself into a symlink.
+mkdir -p "${HOME}/.config"
+
+ln -sf "$(pwd)/files/tinted-shell" "${HOME}/.config/"
 echo -e "Creating symlink for dotfiles\n"
 
 # symlink all the dotfiles (excluding .bashrc.d which is handled per-file below)

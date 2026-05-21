@@ -1,5 +1,3 @@
-vim.opt.termguicolors = true
-
 local base24_theme = vim.env.BASE24_THEME
 local base16_theme = vim.env.BASE16_THEME
 
@@ -13,9 +11,6 @@ else
 	return
 end
 
-require("tinted-colorscheme").setup(colorscheme, {
-	supports = {
-		tinty = false,
-		live_reload = false,
-	},
+require("tinted-nvim").setup({
+	default_scheme = colorscheme,
 })

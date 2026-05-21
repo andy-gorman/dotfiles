@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Author: Andy Gorman
+#
+# Symlinks the shared SSH config into ~/.ssh/.
+# Backs up any existing real file first so manual setup is never clobbered.
+
+set -e
+
+ASPECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+SRC="${ASPECT_DIR}/files/config"
+DEST="${HOME}/.ssh/config"
+LOCAL="${HOME}/.ssh/config.local"
+SOCKETS="${HOME}/.ssh/sockets"
+
+mkdir -p "${HOME}/.ssh" "${SOCKETS}"
+chmod 700 "${HOME}/.ssh" "${SOCKETS}"
+
+# Ensure config.local exists so `Include` doesn't fail noisily on a fresh box.
+if [[ ! -e "${LOCAL}" ]]; then
+	cat > "${LOCAL}" <<'EOF'
+# Machine- or work-specific SSH hosts. Not tracked in dotfiles.
+# Entries here win over the shared config (first match wins in ssh).
+EOF
+	chmod 600 "${LOCAL}"
+	echo "Created ${LOCAL}."
+fi
+
+# Back up an existing real file (one we didn't create) before symlinking.
+if [[ -e "${DEST}" && ! -L "${DEST}" ]]; then
+	backup="${DEST}.backup.$(date +%Y%m%d%H%M%S)"
+	mv "${DEST}" "${backup}"
+	echo "Existing ${DEST} backed up to ${backup}."
+fi
+
+ln -sf "${SRC}" "${DEST}"
+echo "Symlinked ${DEST} -> ${SRC}."

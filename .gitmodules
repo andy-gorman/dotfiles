@@ -1,11 +1,3 @@
-[submodule "aspects/bash/base16-shell"]
-	path = aspects/dotfiles/files/base16-shell
-	url = git@github.com:tinted-theming/base16-shell.git
-	branch = main
-[submodule "aspects/tmux/base16-tmux"]
-	path = aspects/tmux/.tmux/plugins/base16-tmux
-	url = git@github.com:tinted-theming/base16-tmux.git
-	branch = main
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-tree.lua"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-tree.lua
 	url = git@github.com:nvim-tree/nvim-tree.lua.git
@@ -30,7 +22,11 @@
 	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-treesitter
 	url = git@github.com:nvim-treesitter/nvim-treesitter.git
 	branch = main
-[submodule "aspects/dotfiles/files/base16-tmux"]
-	path = aspects/dotfiles/files/base16-tmux
-	url = https://github.com/tinted-theming/tinted-tmux
+[submodule "aspects/dotfiles/files/tinted-shell"]
+	path = aspects/dotfiles/files/tinted-shell
+	url = git@github.com:tinted-theming/tinted-shell.git
+	branch = main
+[submodule "aspects/tmux/files/.tmux/plugins/tinted-tmux"]
+	path = aspects/tmux/files/.tmux/plugins/tinted-tmux
+	url = git@github.com:tinted-theming/tinted-tmux.git
 	branch = main
