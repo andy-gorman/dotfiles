@@ -79,6 +79,30 @@ echo ""
 
 echo "=== Running aspect setup ==="
 "${DOTFILES_ROOT}/bin/setup"
-
 echo ""
+
+echo "=== Work / company dotfiles (optional) ==="
+# Prompt for a separate work-specific dotfiles repo (e.g. auditboard-dotfiles).
+# Convention: lives as a sibling of this repo and exposes its own bin/setup.
+# Blank input skips this section entirely.
+read -rp "Work dotfiles repo URL (blank to skip): " work_repo
+if [[ -n "${work_repo}" ]]; then
+	work_dir="$(dirname "${DOTFILES_ROOT}")/$(basename "${work_repo}" .git)"
+	if [[ -d "${work_dir}" ]]; then
+		echo "Work dotfiles already at ${work_dir}; skipping clone."
+	else
+		echo "Cloning ${work_repo} -> ${work_dir}..."
+		git clone --recursive "${work_repo}" "${work_dir}"
+	fi
+	if [[ -x "${work_dir}/bin/setup" ]]; then
+		echo "Running ${work_dir}/bin/setup..."
+		"${work_dir}/bin/setup"
+	else
+		echo "No bin/setup found in ${work_dir}; run its setup manually."
+	fi
+else
+	echo "Skipped."
+fi
+echo ""
+
 echo "Bootstrap complete. Open a new login shell to pick up the modern bash + full environment."
