@@ -11,6 +11,7 @@ brew "coreutils"
 
 # Editors / multiplexers
 brew "neovim"
+brew "tree-sitter-cli"
 brew "tmux"
 brew "zellij"
 

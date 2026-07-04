@@ -3,7 +3,7 @@
 -- Only enabled for auditboard-frontend
 
 return {
-	cmd = { "typescript-language-server", "--stdio" },
+	cmd = {"pnpm", "exec", "typescript-language-server", "--stdio" },
 	filetypes = {
 		"typescript",
 		"javascript",

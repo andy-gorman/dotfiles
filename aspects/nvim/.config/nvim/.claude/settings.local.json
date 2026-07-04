@@ -3,7 +3,9 @@
     "allow": [
       "Bash(cat:*)",
       "WebSearch",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Read(//Users/agorman/Development/Optro/Repositories/auditboard-frontend/**)",
+      "Read(//Users/agorman/Development/Optro/Repositories/auditboard-frontend/apps/**)"
     ]
   }
 }

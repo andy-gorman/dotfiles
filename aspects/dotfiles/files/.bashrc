@@ -133,3 +133,4 @@ if [[ -d "$HOME/.bashrc.work.d" ]]; then
     done
     unset file
 fi
+eval "$(direnv hook bash)"
