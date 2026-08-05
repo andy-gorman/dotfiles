@@ -6,10 +6,9 @@ require("nvim-treesitter").update(languages)
 
 -- Enable tree-sitter highlighting and indentation for specified languages
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = vim.list_extend(vim.deepcopy(languages), { "typescriptreact", "javascriptreact" }),
+	pattern = languages,
 	callback = function()
 		vim.treesitter.start()
-		vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 		vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
 		vim.wo[0][0].foldmethod = "expr"
 	end,
@@ -26,18 +25,3 @@ end, {})
 vim.api.nvim_create_user_command("TSInstallConfigured", function()
 	require("nvim-treesitter").install(languages)
 end, {})
-
-require("incremental-selection").setup({
-	init = "<CR>", -- normal mode: start selection
-	increment = "<CR>", -- visual mode: expand to parent
-	scope = "<TAB>", -- visual mode: expand to scope
-	decrement = "<BS>", -- visual mode: shrink
-})
-
--- Override the <CR> we set for incremental-selection in quickfix menu
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "qf",
-	callback = function()
-		vim.keymap.set("n", "<CR>", "<CR>", { buffer = true, noremap = true })
-	end,
-})
