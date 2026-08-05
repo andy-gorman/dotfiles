@@ -33,3 +33,4 @@
 [submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-lspconfig"]
 	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-lspconfig
 	url = https://github.com/neovim/nvim-lspconfig
+	branch = master
