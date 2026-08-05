@@ -30,3 +30,6 @@
 	path = aspects/tmux/files/.tmux/plugins/tinted-tmux
 	url = git@github.com:tinted-theming/tinted-tmux.git
 	branch = main
+[submodule "aspects/nvim/.config/nvim/pack/plugins/start/nvim-lspconfig"]
+	path = aspects/nvim/.config/nvim/pack/plugins/start/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
