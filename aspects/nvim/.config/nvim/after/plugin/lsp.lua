@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.lsp.enable({
-	"tsgo",
+	"tsc",
 	"gopls",
 	"lua_ls",
 	"oxfmt",

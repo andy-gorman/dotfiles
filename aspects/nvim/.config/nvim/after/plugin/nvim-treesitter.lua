@@ -14,13 +14,6 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
--- Command to list installed parsers
-vim.api.nvim_create_user_command("TSInstalled", function()
-	local installed = require("nvim-treesitter").get_installed()
-	table.sort(installed)
-	print("Installed parsers: " .. table.concat(installed, ", "))
-end, {})
-
 -- Command to install configured languages
 vim.api.nvim_create_user_command("TSInstallConfigured", function()
 	require("nvim-treesitter").install(languages)

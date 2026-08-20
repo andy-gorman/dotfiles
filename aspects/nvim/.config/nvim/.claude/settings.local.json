@@ -5,7 +5,13 @@
       "WebSearch",
       "WebFetch(domain:github.com)",
       "Read(//Users/agorman/Development/Optro/Repositories/auditboard-frontend/**)",
-      "Read(//Users/agorman/Development/Optro/Repositories/auditboard-frontend/apps/**)"
+      "Read(//Users/agorman/Development/Optro/Repositories/auditboard-frontend/apps/**)",
+      "Read(//Users/agorman/Development/dotfiles/**)",
+      "Bash(nvim --headless -c \"lua print\\(vim.inspect\\(vim.treesitter.language.get_lang\\('sh'\\)\\)\\)\" -c \"qa\")",
+      "Read(//private/tmp/**)",
+      "Bash(shellcheck -f json /tmp/sc_test.sh)",
+      "Bash(printf '#!/bin/bash\\\\necho $1\\\\nfoo=$\\(ls\\)\\\\necho $foo\\\\n')",
+      "Bash(shellcheck /tmp/sc_test3.sh)"
     ]
   }
 }
